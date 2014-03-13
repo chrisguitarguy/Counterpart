@@ -28,6 +28,18 @@ namespace Counterpart;
  */
 final class Matchers
 {
+    /**
+     * Create a new IsType matcher.
+     *
+     * @since   1.0
+     * @access  public
+     * @param   string $type
+     * @return  Matcher
+     */
+    public static function isType($type)
+    {
+        return new Matcher\IsType($type);
+    }
 
     // @codeCoverageIgnoreStart
     private function __construct() { }

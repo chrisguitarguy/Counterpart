@@ -19,38 +19,14 @@
  * @license     http://opensource.org/licenses/apache-2.0 Apache-2.0
  */
 
-namespace Counterpart;
+namespace Counterpart\Exception;
 
 /**
- * Matchers compare two values and see if a condition is met.
+ * Throw when an invalid argument is passed into some method or function.
  *
  * @since   1.0
  */
-interface Matcher
+class InvalidArgumentException extends \InvalidArgumentException implements CounterpartException
 {
-    /**
-     * Check to see if a matcher matches a given value.
-     *
-     * @since   1.0
-     * @access  public
-     * @param   mixed $actual
-     * @return  boolean True if $actual matches a given value.
-     */
-    public function matches($actual);
-
-    /**
-     * Returns a brief description of what was expected.
-     *
-     * Examples:
-     *  - An array containing the key "a_key"
-     *  - False
-     *  - Null
-     *  - An array containing the value "a value"
-     *  - An array or Countable implementation with 20 items
-     *
-     * @since   1.0
-     * @access  public
-     * @return  string
-     */
-    public function __toString();
+    // noop
 }
