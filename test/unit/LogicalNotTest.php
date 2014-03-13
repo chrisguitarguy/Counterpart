@@ -37,4 +37,10 @@ class LogicalNotTest extends TestCase
         $this->assertFalse(Matchers::not($matcher)->matches("ignored"));
         $this->assertTrue(Matchers::not($matcher2)->matches("ignored"));
     }
+
+    public function testConvenienceMethodsMatchAsExpected()
+    {
+        $this->assertTrue(Matchers::isNotNull()->matches(''));
+        $this->assertFalse(Matchers::isNotNull()->matches(null));
+    }
 }

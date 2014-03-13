@@ -102,6 +102,18 @@ final class Matchers
     }
 
     /**
+     * Same as Matcher::not(Matcher::isNull())
+     *
+     * @since   1.0
+     * @access  public
+     * @return  Matcher
+     */
+    public static function isNotNull()
+    {
+        return self::not(self::isNull());
+    }
+
+    /**
      * Create a LogicalNot for a given matcher
      *
      * @since   1.0
