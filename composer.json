@@ -1,0 +1,23 @@
+{
+    "name": "counterpart/counterpart"
+    , "description": "A set of generic matchers -- for see if one value matches another"
+    , "tags": ["testing", "assert", "matcher"]
+    , "authors": [
+        {
+            "name": "Christopher Davis"
+            , "homepage": "http://christopherdavis.me"
+            , "role": "Developer"
+        }
+    ]
+    , "require": {
+        "php": ">=5.4"
+    }
+    , "require-dev": {
+        "phpunit/phpunit": "~4.0"
+    }
+    , "autoload": {
+        "psr-4": {
+            "Counterpart\\": "src/"
+        }
+    }
+}
