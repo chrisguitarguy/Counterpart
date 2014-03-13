@@ -41,9 +41,6 @@ class IsTypeType extends TestCase
     public function testConvenienceWrapersMatchAsExpected()
     {
         $this->assertTrue(Matchers::isNull()->matches(null));
-        $this->assertTrue(Matchers::isArray()->matches([]));
-        $this->assertFalse(Matchers::isString()->matches([]));
-        $this->assertFalse(Matchers::isBool()->matches('not a boolean'));
-        $this->assertTrue(Matchers::isObject()->matches(new \stdClass()));
+        $this->assertFalse(Matchers::isNull()->matches(''));
     }
 }
