@@ -41,6 +41,66 @@ final class Matchers
         return new Matcher\IsType($type);
     }
 
+    /**
+     * Same as Mactchers::isType('null')
+     *
+     * @since   1.0
+     * @access  public
+     * @return  Matcher
+     */
+    public static function isNull()
+    {
+        return self::isType('null');
+    }
+
+    /**
+     * Same as Matchers::isType('string')
+     *
+     * @since   1.0
+     * @access  public
+     * @return  Matcher
+     */
+    public static function isString()
+    {
+        return self::isType('string');
+    }
+
+    /**
+     * Same as Matchers::isType('array')
+     *
+     * @since   1.0
+     * @access  public
+     * @return  Matcher
+     */
+    public static function isArray()
+    {
+        return self::isType('array');
+    }
+
+    /**
+     * Same as Matchers::isType('bool')
+     *
+     * @since   1.0
+     * @access  public
+     * @return  Matcher
+     */
+    public static function isBool()
+    {
+        return self::isType('bool');
+    }
+
+    /**
+     * Same as Matchers::isType('object')
+     *
+     * @since   1.0
+     * @access  public
+     * @return  Matcher
+     */
+    public static function isObject()
+    {
+        return self::isType('object');
+    }
+
     // @codeCoverageIgnoreStart
     private function __construct() { }
     // @codeCoverageIgnoreEnd
