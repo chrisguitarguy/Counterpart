@@ -101,6 +101,18 @@ final class Matchers
         return self::isType('object');
     }
 
+    /**
+     * Create a LogicalNot for a given matcher
+     *
+     * @since   1.0
+     * @access  public
+     * @return  Matcher
+     */
+    public static function not(Matcher $matcher)
+    {
+        return new Matcher\LogicalNot($matcher);
+    }
+
     // @codeCoverageIgnoreStart
     private function __construct() { }
     // @codeCoverageIgnoreEnd
