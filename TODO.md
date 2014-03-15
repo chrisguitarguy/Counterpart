@@ -14,8 +14,8 @@
 - [x] IsNull
 - [x] IsTrue
 - [x] IsFalse
-- [ ] IsTruthy
-- [ ] IsFalsy
+- [x] IsTruthy
+- [x] IsFalsy
 - [x] HasKey
 - [ ] HasAttribute
 - [ ] IsInstanceOf
