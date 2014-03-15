@@ -73,6 +73,6 @@ class HasKey implements Matcher
      */
     public function __toString()
     {
-        return "an array or ArrayAccess with the " . \Counterpart\prettify($this->key);
+        return "is an array or ArrayAccess implementation with the key " . \Counterpart\prettify($this->key);
     }
 }
