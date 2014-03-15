@@ -50,7 +50,7 @@ final class Matchers
      */
     public static function isNull()
     {
-        return self::isType('null');
+        return new Matcher\IsNull();
     }
 
     /**
