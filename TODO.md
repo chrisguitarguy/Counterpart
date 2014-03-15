@@ -17,7 +17,7 @@
 - [x] IsTruthy
 - [x] IsFalsy
 - [x] HasKey
-- [ ] HasAttribute
+- [x] HasProperty
 - [ ] IsInstanceOf
 - [ ] Anything
 - [ ] IsEmpty
