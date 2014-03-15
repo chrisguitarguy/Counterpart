@@ -21,7 +21,7 @@
 
 namespace Counterpart;
 
-class IsTypeType extends TestCase
+class IsTypeTest extends TestCase
 {
     /**
      * @expectedException Counterpart\Exception\CounterpartException
@@ -36,11 +36,5 @@ class IsTypeType extends TestCase
         $this->assertFalse(Matchers::isType('null')->matches('not null'));
         $this->assertTrue(Matchers::isType('string')->matches('a string'));
         $this->assertFalse(Matchers::istype('array')->matches(null));
-    }
-
-    public function testConvenienceWrapersMatchAsExpected()
-    {
-        $this->assertTrue(Matchers::isNull()->matches(null));
-        $this->assertFalse(Matchers::isNull()->matches(''));
     }
 }
