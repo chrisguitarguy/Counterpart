@@ -66,6 +66,19 @@ final class Matchers
     }
 
     /**
+     * Create a new HasKey matcher.
+     *
+     * @since   1.0
+     * @access  public
+     * @param   mixed $key
+     * @return  Matcher
+     */
+    public static function hasKey($key)
+    {
+        return new Matcher\HasKey($key);
+    }
+
+    /**
      * Create a LogicalNot for a given matcher
      *
      * @since   1.0
