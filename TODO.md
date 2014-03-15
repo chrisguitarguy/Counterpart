@@ -18,7 +18,7 @@
 - [x] IsFalsy
 - [x] HasKey
 - [x] HasProperty
-- [ ] IsInstanceOf
+- [x] IsInstanceOf
 - [ ] Anything
 - [ ] IsEmpty
 - [ ] FileExists
