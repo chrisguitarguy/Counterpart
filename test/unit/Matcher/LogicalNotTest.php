@@ -19,13 +19,24 @@
  * @license     http://opensource.org/licenses/apache-2.0 Apache-2.0
  */
 
-namespace Counterpart;
+namespace Counterpart\Matcher;
 
-class IsNullTest extends TestCase
+use Counterpart\TestCase;
+
+class LogicalNotTest extends TestCase
 {
-    public function testIsNullMatchesCorrectly()
+    public function testLogicalNotNegatesWhateverItsMatcherSends()
     {
-        $this->assertTrue(Matchers::isNull()->matches(null));
-        $this->assertFalse(Matchers::isNull()->matches(''));
+        $matcher = $this->getMock('Counterpart\\Matcher');
+        $matcher->expects($this->once())
+            ->method('matches')
+            ->willReturn(true);
+        $matcher2 = $this->getMock('Counterpart\\Matcher');
+        $matcher2->expects($this->once())
+            ->method('matches')
+            ->willReturn(false);
+
+        $this->assertFalse((new LogicalNot($matcher))->matches("ignored"));
+        $this->assertTrue((new LogicalNot($matcher2))->matches("ignored"));
     }
 }

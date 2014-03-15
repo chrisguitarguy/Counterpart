@@ -19,29 +19,36 @@
  * @license     http://opensource.org/licenses/apache-2.0 Apache-2.0
  */
 
-namespace Counterpart;
+namespace Counterpart\Matcher;
+
+use Counterpart\TestCase;
 
 class HasKeyTest extends TestCase
 {
     public function testHasKeyWithNonArrayAlwaysReturnsFalse()
     {
-        $this->assertFalse(Matchers::hasKey('one')->matches('not an array'));
-        $this->assertFalse(Matchers::hasKey('one')->matches(null));
-        $this->assertFalse(Matchers::hasKey('one')->matches(false));
+        $matcher = new HasKey('one');
+
+        $this->assertFalse($matcher->matches('not an array'));
+        $this->assertFalse($matcher->matches(null));
+        $this->assertFalse($matcher->matches(false));
     }
 
     public function testHasKeyWithArrayMatchesAsExpected()
     {
-        $this->assertTrue(Matchers::hasKey('one')->matches(['one' => true]));
-        $this->assertTrue(Matchers::hasKey('one')->matches(['one' => null]));
-        $this->assertFalse(Matchers::hasKey('two')->matches(['one' => null]));
-        $this->assertFalse(Matchers::hasKey('two')->matches([]));
+        $matcher = new HasKey('one');
+
+        $this->assertTrue($matcher->matches(['one' => true]));
+        $this->assertTrue($matcher->matches(['one' => null]));
+        $this->assertFalse($matcher->matches(['two' => null]));
+        $this->assertFalse($matcher->matches([]));
     }
 
     public function testHasKeyArrayAccessImplementation()
     {
         $aa = new \ArrayObject(['one' => true]);
-        $this->assertTrue(Matchers::hasKey('one')->matches($aa));
-        $this->assertFalse(Matchers::hasKey('two')->matches($aa));
+
+        $this->assertTrue((new HasKey('one'))->matches($aa));
+        $this->assertFalse((new HasKey('two'))->matches($aa));
     }
 }

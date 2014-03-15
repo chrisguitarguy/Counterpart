@@ -19,28 +19,24 @@
  * @license     http://opensource.org/licenses/apache-2.0 Apache-2.0
  */
 
-namespace Counterpart;
+namespace Counterpart\Matcher;
 
-class LogicalNotTest extends TestCase
+use Counterpart\TestCase;
+
+class IsTypeTest extends TestCase
 {
-    public function testLogicalNotNegatesWhateverItsMatcherSends()
+    /**
+     * @expectedException Counterpart\Exception\CounterpartException
+     */
+    public function testWithInvalidTypeThrowsExceptionOnCreation()
     {
-        $matcher = $this->getMock('Counterpart\\Matcher');
-        $matcher->expects($this->once())
-            ->method('matches')
-            ->willReturn(true);
-        $matcher2 = $this->getMock('Counterpart\\Matcher');
-        $matcher2->expects($this->once())
-            ->method('matches')
-            ->willReturn(false);
-
-        $this->assertFalse(Matchers::not($matcher)->matches("ignored"));
-        $this->assertTrue(Matchers::not($matcher2)->matches("ignored"));
+        new IsType('notarealtype');
     }
 
-    public function testConvenienceMethodsMatchAsExpected()
+    public function testIsTypeMatchesAsExpected()
     {
-        $this->assertTrue(Matchers::isNotNull()->matches(''));
-        $this->assertFalse(Matchers::isNotNull()->matches(null));
+        $this->assertFalse((new IsType('null'))->matches('not null'));
+        $this->assertTrue((new IsType('string'))->matches('a string'));
+        $this->assertFalse((new IsType('array'))->matches(null));
     }
 }

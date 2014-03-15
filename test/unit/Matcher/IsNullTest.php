@@ -19,22 +19,18 @@
  * @license     http://opensource.org/licenses/apache-2.0 Apache-2.0
  */
 
-namespace Counterpart;
+namespace Counterpart\Matcher;
 
-class IsTypeTest extends TestCase
+use Counterpart\TestCase;
+
+class IsNullTest extends TestCase
 {
-    /**
-     * @expectedException Counterpart\Exception\CounterpartException
-     */
-    public function testWithInvalidTypeThrowsExceptionOnCreation()
+    public function testIsNullMatchesCorrectly()
     {
-        Matchers::isType('notarealtype');
-    }
+        $matcher = new IsNull();
 
-    public function testIsTypeMatchesAsExpected()
-    {
-        $this->assertFalse(Matchers::isType('null')->matches('not null'));
-        $this->assertTrue(Matchers::isType('string')->matches('a string'));
-        $this->assertFalse(Matchers::istype('array')->matches(null));
+        $this->assertTrue($matcher->matches(null));
+        $this->assertFalse($matcher->matches(''));
+        $this->assertFalse($matcher->matches(false));
     }
 }
