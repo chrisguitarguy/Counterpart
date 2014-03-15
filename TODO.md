@@ -12,8 +12,8 @@
 - [ ] LogicalXor
 - [x] IsType
 - [x] IsNull
-- [ ] IsTrue
-- [ ] IsFalse
+- [x] IsTrue
+- [x] IsFalse
 - [ ] IsTruthy
 - [ ] IsFalsy
 - [x] HasKey
