@@ -46,6 +46,7 @@ class HasProperty implements Matcher
      * @since   1.0
      * @access  public
      * @param   string $propertyName
+     * @throws  InvalidArgumentException if the property name isn't a string
      * @return  void
      */
     public function __construct($propertyName)

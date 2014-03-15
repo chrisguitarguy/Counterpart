@@ -53,4 +53,12 @@ class HasPropertyTest extends TestCase
 
         $this->assertTrue((new HasProperty('prop'))->matches($o));
     }
+
+    /**
+     * @expectedException Counterpart\Exception\CounterpartException
+     */
+    public function testNonStringPropertyNameCausesConstructorToComplain()
+    {
+        new HasProperty(['this', "doesn't", 'work']);
+    }
 }
