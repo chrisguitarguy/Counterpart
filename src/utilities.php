@@ -19,6 +19,25 @@
  * @license     http://opensource.org/licenses/apache-2.0 Apache-2.0
  */
 
-$loader = require __DIR__ . '/../vendor/autoload.php';
-$loader->addPsr4("Counterpart\\", __DIR__ . '/unit');
-$loader->addPsr4("Counterpart\\", __DIR__ . '/integration');
+namespace Counterpart;
+
+use SebastianBergmann\Exporter\Exporter;
+
+/**
+ * Export a variable to a pretty string representation.
+ *
+ * This uses a library to do the heavy lifting.
+ *
+ * @since   1.0
+ * @param   mixed $var
+ * @return  string
+ */
+function prettify($var)
+{
+    static $exporter = null; // boooo global variables!
+    if (null === $exporter) {
+        $exporter = new Exporter();
+    }
+
+    return $exporter->export($var);
+}

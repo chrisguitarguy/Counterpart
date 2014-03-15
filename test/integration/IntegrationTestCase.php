@@ -19,6 +19,9 @@
  * @license     http://opensource.org/licenses/apache-2.0 Apache-2.0
  */
 
-$loader = require __DIR__ . '/../vendor/autoload.php';
-$loader->addPsr4("Counterpart\\", __DIR__ . '/unit');
-$loader->addPsr4("Counterpart\\", __DIR__ . '/integration');
+namespace Counterpart;
+
+class IntegrationTestCase extends \PHPUnit_Framework_TestCase
+{
+    // nothing. Yet!
+}
