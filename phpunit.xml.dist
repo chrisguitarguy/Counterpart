@@ -10,6 +10,7 @@
          stopOnFailure="false"
          syntaxCheck="false"
          bootstrap="test/bootstrap.php">
+
     <testsuites>
         <testsuite name="Unit">
             <directory>./test/unit</directory>
@@ -18,4 +19,11 @@
             <directory>./test/integration</directory>
         </testsuite>
     </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">src/</directory>
+        </whitelist>
+    </filter>
+
 </phpunit>
