@@ -22,7 +22,7 @@
 - [x] Anything
 - [x] IsEmpty
 - [x] FileExists
-- [ ] IsEqual
+- [x] IsEqual
 - [ ] IsGreaterThan
 - [ ] IsLessThan
 - [ ] Count
