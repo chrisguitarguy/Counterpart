@@ -19,7 +19,7 @@
 - [x] HasKey
 - [x] HasProperty
 - [x] IsInstanceOf
-- [ ] Anything
+- [x] Anything
 - [ ] IsEmpty
 - [ ] FileExists
 - [ ] IsEqual
