@@ -27,16 +27,40 @@ class IsEmptyTest extends TestCase
 {
     private $matcher;
 
-    public function testMatchesReturnsTrueForOnlyEmptyValues()
+    public function emptyProvider()
     {
-        $this->assertTrue($this->matcher->matches(null));
-        $this->assertTrue($this->matcher->matches(false));
-        $this->assertTrue($this->matcher->matches(""));
-        $this->assertTrue($this->matcher->matches([]));
-        $this->assertFalse($this->matcher->matches('a string'));
-        $this->assertFalse($this->matcher->matches(true));
-        $this->assertFalse($this->matcher->matches(['one']));
-        $this->assertFalse($this->matcher->matches(new \stdClass));
+        return [
+            [null],
+            [false],
+            [""],
+            [[]],
+        ];
+    }
+
+    /**
+     * @dataProvider emptyProvider
+     */
+    public function testMatchesReturnsTrueEmptyValues($value)
+    {
+        $this->assertTrue($this->matcher->matches($value));
+    }
+
+    public function nonEmptyProvider()
+    {
+        return [
+            ['a string'],
+            [true],
+            [['one']],
+            [new \stdClass],
+        ];
+    }
+
+    /**
+     * @dataProvider nonEmptyProvider
+     */
+    public function testMatchesReturnsFalseForNonEmptyValue($value)
+    {
+        $this->assertFalse($this->matcher->matches($value));
     }
 
     protected function setUp()
