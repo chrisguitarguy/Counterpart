@@ -21,7 +21,7 @@
 - [x] IsInstanceOf
 - [x] Anything
 - [x] IsEmpty
-- [ ] FileExists
+- [x] FileExists
 - [ ] IsEqual
 - [ ] IsGreaterThan
 - [ ] IsLessThan
