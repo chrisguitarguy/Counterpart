@@ -24,7 +24,7 @@
 - [x] FileExists
 - [x] IsEqual
 - [x] GreaterThan
-- [ ] LessThan
+- [x] LessThan
 - [ ] Count
 - [ ] Callback
 - [ ] StringContains
