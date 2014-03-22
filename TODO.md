@@ -23,8 +23,8 @@
 - [x] IsEmpty
 - [x] FileExists
 - [x] IsEqual
-- [ ] IsGreaterThan
-- [ ] IsLessThan
+- [x] GreaterThan
+- [ ] LessThan
 - [ ] Count
 - [ ] Callback
 - [ ] StringContains
