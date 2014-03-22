@@ -25,7 +25,7 @@
 - [x] IsEqual
 - [x] GreaterThan
 - [x] LessThan
-- [ ] Count
+- [x] Count
 - [ ] Callback
 - [ ] StringContains
 - [ ] Contains -- for iterators
