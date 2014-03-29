@@ -26,7 +26,7 @@
 - [x] GreaterThan
 - [x] LessThan
 - [x] Count
-- [ ] Callback
+- [x] Callback
 - [ ] StringContains
 - [ ] Contains -- for iterators
 - [ ] MatchesRegex
