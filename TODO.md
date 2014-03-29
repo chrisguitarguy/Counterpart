@@ -27,7 +27,7 @@
 - [x] LessThan
 - [x] Count
 - [x] Callback
-- [ ] StringContains
+- [x] StringContains
 - [ ] Contains -- for iterators
 - [ ] MatchesRegex
 - [ ] IsJson
