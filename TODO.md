@@ -28,6 +28,6 @@
 - [x] Count
 - [x] Callback
 - [x] StringContains
-- [ ] Contains -- for iterators
+- [x] Contains -- for iterators
 - [ ] MatchesRegex
 - [ ] IsJson
