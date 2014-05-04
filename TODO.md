@@ -7,7 +7,7 @@
 #### Matchers
 
 - [x] LogicalNot
-- [ ] LogicalAnd
+- [x] LogicalAnd
 - [ ] LogicalOr
 - [ ] LogicalXor
 - [x] IsType
