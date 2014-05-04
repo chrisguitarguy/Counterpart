@@ -34,22 +34,30 @@ class IsEqual implements Matcher
      * The value to check against.
      *
      * @since   1.0
-     * @access  private
      * @var     string
      */
     private $expected;
 
     /**
+     * Whether or not to use strict equality
+     *
+     * @since   1.0
+     * @var     boolean
+     */
+    private $strict;
+
+    /**
      * Constructor. Set expected value
      *
      * @since   1.0
-     * @access  public
      * @param   string $expected
+     * @param   boolean $strict
      * @return  void
      */
-    public function __construct($expected)
+    public function __construct($expected, $strict=false)
     {
         $this->expected = $expected;
+        $this->strict = (bool)$strict;
     }
 
     /**
@@ -57,7 +65,11 @@ class IsEqual implements Matcher
      */
     public function matches($actual)
     {
-        return $this->expected == $actual;
+        if ($this->strict) {
+            return $this->expected === $actual;
+        } else {
+            return $this->expected == $actual;
+        }
     }
 
     /**

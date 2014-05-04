@@ -31,10 +31,21 @@ class IsEqualTest extends TestCase
             [null, ''],
             [false, ''],
             [true, 'non empty string'],
-            ['one', 'one'],
+            [new \stdClass, new \stdClass]
+        ];
+    }
+
+    public function exactEqualityProvider()
+    {
+        $cls = new \stdClass;
+        return [
             [false, false],
             [true, true],
-            [new \stdClass, new \stdClass]
+            [null, null],
+            [12, 12],
+            ['one', 'one'],
+            [1.0, 1.0],
+            [$cls, $cls],
         ];
     }
 
@@ -44,6 +55,30 @@ class IsEqualTest extends TestCase
     public function testMatchesReturnsTrueForEqualValues($expected, $actual)
     {
         $this->assertTrue((new IsEqual($expected))->matches($actual));
+    }
+
+    /**
+     * @dataProvider exactEqualityProvider
+     */
+    public function testMatchesReturnsTrueForExactlyEqualValue($expected, $actual)
+    {
+        $this->assertTrue((new IsEqual($expected))->matches($actual));
+    }
+
+    /**
+     * @dataProvider exactEqualityProvider
+     */
+    public function testMatchesWithStrictReturnsTrueOnlyForExactlyEqualsItems($expected, $actual)
+    {
+        $this->assertTrue((new IsEqual($expected, true))->matches($actual));
+    }
+
+    /**
+     * @dataProvider equalityProvider
+     */
+    public function testMatchesWithStrictReturnsFalseForFuzzyEqualValues($expected, $actual)
+    {
+        $this->assertFalse((new IsEqual($expected, true))->matches($actual));
     }
 
     public function inequalityProvider()
@@ -65,5 +100,13 @@ class IsEqualTest extends TestCase
     public function testMatchesReturnsFalseForNotEqualValues($expected, $actual)
     {
         $this->assertFalse((new IsEqual($expected))->matches($actual));
+    }
+
+    /**
+     * @dataProvider inequalityProvider
+     */
+    public function testMatchesWithStrictReturnsFalseForNotEqualValues($expected, $actual)
+    {
+        $this->assertFalse((new IsEqual($expected, true))->matches($actual));
     }
 }
