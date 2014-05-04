@@ -30,4 +30,4 @@
 - [x] StringContains
 - [x] Contains -- for iterators
 - [x] MatchesRegex
-- [ ] IsJson
+- [x] IsJson
