@@ -29,5 +29,5 @@
 - [x] Callback
 - [x] StringContains
 - [x] Contains -- for iterators
-- [ ] MatchesRegex
+- [x] MatchesRegex
 - [ ] IsJson
