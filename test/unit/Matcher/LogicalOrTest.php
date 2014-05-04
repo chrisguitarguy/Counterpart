@@ -21,29 +21,29 @@
 
 namespace Counterpart\Matcher;
 
-class LogicalAndTest extends LogicalCombinationTestCase
+class LogicalOrTest extends LogicalCombinationTestCase
 {
     /**
      * @expectedException Counterpart\Exception\CounterpartException
      */
     public function testCreateWithInvalidMatcherThrowsException()
     {
-        new LogicalAnd([null]);
+        new LogicalOr([null]);
     }
 
-    public function testMatchesReturnsFalseWhenOneMatcherReturnsFalse()
+    public function testMatchesReturnsTrueWhenOneMatcherReturnsTrue()
     {
-        $matcherOne = $this->matcherReturning(true);
+        $matcherOne = $this->matcherReturning(false);
+        $matcherTwo = $this->matcherReturning(true);
+
+        $this->assertTrue((new LogicalOr([$matcherOne, $matcherTwo]))->matches('ignored'));
+    }
+
+    public function testMatchesReturnsFalseWhenAllMatchersReturnFalse()
+    {
+        $matcherOne = $this->matcherReturning(false);
         $matcherTwo = $this->matcherReturning(false);
 
         $this->assertFalse((new LogicalAnd([$matcherOne, $matcherTwo]))->matches('ignored'));
-    }
-
-    public function testMatchesReturnsTrueWhenAllMatchersReturnTrue()
-    {
-        $matcherOne = $this->matcherReturning(true);
-        $matcherTwo = $this->matcherReturning(true);
-
-        $this->assertTrue((new LogicalAnd([$matcherOne, $matcherTwo]))->matches('ignored'));
     }
 }

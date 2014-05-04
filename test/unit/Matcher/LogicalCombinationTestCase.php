@@ -28,7 +28,7 @@ class LogicalCombinationTestCase extends TestCase
     protected function matcherReturning($bool)
     {
         $m = $this->getMock('Counterpart\\Matcher');
-        $m->expects($this->atLeastOnce())
+        $m->expects($this->any())
             ->method('matches')
             ->willReturn($bool);
 

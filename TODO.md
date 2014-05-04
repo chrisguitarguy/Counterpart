@@ -8,7 +8,7 @@
 
 - [x] LogicalNot
 - [x] LogicalAnd
-- [ ] LogicalOr
+- [x] LogicalOr
 - [ ] LogicalXor
 - [x] IsType
 - [x] IsNull

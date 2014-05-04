@@ -21,52 +21,19 @@
 
 namespace Counterpart\Matcher;
 
-use Counterpart\Matcher;
-use Counterpart\Exception\InvalidArgumentException;
-
 /**
  * Check to see if a value matches one more more matchers.
  *
  * @since   1.0
  */
-class LogicalAnd implements Matcher
+class LogicalAnd extends AbstractLogicalMatcher
 {
-    /**
-     * The matchers to check against.
-     *
-     * @since   1.0
-     * @var     Matcher[]
-     */
-    private $matchers = array();
-
-    /**
-     * Constructor. Set up the matchers -- check to make sure each one is a matcher.
-     *
-     * @since   1.0
-     * @param   array $matchers
-     * @throws  InvalidArgumentException if one of the $matchers is not an instance of Matcher
-     * @return  void
-     */
-    public function __construct(array $matchers)
-    {
-        foreach ($matchers as $matcher) {
-            if (!$matcher instanceof Matcher) {
-                throw new InvalidArgumentException(sprintf(
-                    '%s does not implement Matcher',
-                    is_object($matcher) ? get_class($matcher) : gettype($matcher)
-                ));
-            }
-        }
-
-        $this->matchers = $matchers;
-    }
-
     /**
      * {@inheritdoc}
      */
     public function matches($actual)
     {
-        foreach ($this->matchers as $matcher) {
+        foreach ($this->getMatchers() as $matcher) {
             if (!$matcher->matches($actual)) {
                 return false;
             }
@@ -82,6 +49,6 @@ class LogicalAnd implements Matcher
     {
         return implode(' AND ', array_map(function ($matcher) {
             return (string)$matcher;
-        }, $this->matchers));
+        }, $this->getMatchers()));
     }
 }

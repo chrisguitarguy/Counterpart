@@ -21,29 +21,34 @@
 
 namespace Counterpart\Matcher;
 
-class LogicalAndTest extends LogicalCombinationTestCase
+/**
+ * Check to see if a value matches one more more matchers.
+ *
+ * @since   1.0
+ */
+class LogicalOr extends AbstractLogicalMatcher
 {
     /**
-     * @expectedException Counterpart\Exception\CounterpartException
+     * {@inheritdoc}
      */
-    public function testCreateWithInvalidMatcherThrowsException()
+    public function matches($actual)
     {
-        new LogicalAnd([null]);
+        foreach ($this->getMatchers() as $matcher) {
+            if ($matcher->matches($actual)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
-    public function testMatchesReturnsFalseWhenOneMatcherReturnsFalse()
+    /**
+     * {@inheritdoc}
+     */
+    public function __toString()
     {
-        $matcherOne = $this->matcherReturning(true);
-        $matcherTwo = $this->matcherReturning(false);
-
-        $this->assertFalse((new LogicalAnd([$matcherOne, $matcherTwo]))->matches('ignored'));
-    }
-
-    public function testMatchesReturnsTrueWhenAllMatchersReturnTrue()
-    {
-        $matcherOne = $this->matcherReturning(true);
-        $matcherTwo = $this->matcherReturning(true);
-
-        $this->assertTrue((new LogicalAnd([$matcherOne, $matcherTwo]))->matches('ignored'));
+        return implode(' OR ', array_map(function ($matcher) {
+            return (string)$matcher;
+        }, $this->getMatchers()));
     }
 }
