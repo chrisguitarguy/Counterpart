@@ -21,20 +21,12 @@
 
 namespace Counterpart\Matcher;
 
-use Counterpart\TestCase;
-
-class LogicalNotTest extends TestCase
+class LogicalNotTest extends LogicalCombinationTestCase
 {
     public function testLogicalNotNegatesWhateverItsMatcherSends()
     {
-        $matcher = $this->getMock('Counterpart\\Matcher');
-        $matcher->expects($this->once())
-            ->method('matches')
-            ->willReturn(true);
-        $matcher2 = $this->getMock('Counterpart\\Matcher');
-        $matcher2->expects($this->once())
-            ->method('matches')
-            ->willReturn(false);
+        $matcher = $this->matcherReturning(true);
+        $matcher2 = $this->matcherReturning(false);
 
         $this->assertFalse((new LogicalNot($matcher))->matches("ignored"));
         $this->assertTrue((new LogicalNot($matcher2))->matches("ignored"));
