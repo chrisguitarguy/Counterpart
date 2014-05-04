@@ -28,66 +28,190 @@ namespace Counterpart;
  */
 final class Matchers
 {
-    /**
-     * Create a new IsType matcher.
-     *
-     * @since   1.0
-     * @access  public
-     * @param   string $type
-     * @return  Matcher
-     */
-    public static function isType($type)
+    public static function anything()
     {
-        return new Matcher\IsType($type);
+        return new Matcher\Anything();
     }
 
-    /**
-     * Same as Mactchers::isType('null')
-     *
-     * @since   1.0
-     * @access  public
-     * @return  Matcher
-     */
-    public static function isNull()
+    public static function callback(callable $callback)
     {
-        return new Matcher\IsNull();
+        return new Matcher\Callback($callback);
     }
 
-    /**
-     * Same as Matcher::not(Matcher::isNull())
-     *
-     * @since   1.0
-     * @access  public
-     * @return  Matcher
-     */
-    public static function isNotNull()
+    public static function contains($expected)
     {
-        return self::not(self::isNull());
+        return new Matcher\Contains($expected);
     }
 
-    /**
-     * Create a new HasKey matcher.
-     *
-     * @since   1.0
-     * @access  public
-     * @param   mixed $key
-     * @return  Matcher
-     */
+    public static function doesNotContain($expected)
+    {
+        return self::logicalNot(self::contains($expected));
+    }
+
+    public static function count($expectedCount)
+    {
+        return new Matcher\Count($expectedCount);
+    }
+
+    public static function fileExists()
+    {
+        return new Matcher\FileExists();
+    }
+
+    public static function fileDoesNotExist()
+    {
+        return self::logicalNot(self::fileExists());
+    }
+
+    public static function greaterThan($expected)
+    {
+        return new Matcher\GreaterThan($expected);
+    }
+
+    public static function greaterThanOrEqual($expected)
+    {
+        return self::logicalOr(
+            self::isEqual($expected),
+            self::greaterThan($expected)
+        );
+    }
+
     public static function hasKey($key)
     {
         return new Matcher\HasKey($key);
     }
 
-    /**
-     * Create a LogicalNot for a given matcher
-     *
-     * @since   1.0
-     * @access  public
-     * @return  Matcher
-     */
-    public static function not(Matcher $matcher)
+    public static function doesNotHaveKey($key)
+    {
+        return self::logicalNot(self::hasKey($key));
+    }
+
+    public static function hasProperty($prop)
+    {
+        return new Matcher\HasProperty($prop);
+    }
+
+    public static function doesNotHaveProperty($prop)
+    {
+        return self::logicalNot(self::hasProperty($prop));
+    }
+
+    public static function isEmpty()
+    {
+        return new Matcher\IsEmpty();
+    }
+
+    public static function isNotEmpty()
+    {
+        return self::logicalNot(self::isEmpty());
+    }
+
+    public static function isEqual($expected)
+    {
+        return new Matcher\IsEqual($expected);
+    }
+
+    public static function isIdentical($expected)
+    {
+        return new Matcher\IsEqual($expected, true);
+    }
+
+    public static function isFalse()
+    {
+        return new Matcher\IsFalse();
+    }
+
+    public static function isFalsy()
+    {
+        return new Matcher\IsFalsy();
+    }
+
+    public static function isInstanceOf($classname)
+    {
+        return new Matcher\IsInstanceOf($classname);
+    }
+
+    public static function isJson()
+    {
+        return new Matcher\IsJson();
+    }
+
+    public static function isNull()
+    {
+        return new Matcher\IsNull();
+    }
+
+    public static function isNotNull()
+    {
+        return self::logicalNot(self::isNull());
+    }
+
+    public static function isTrue()
+    {
+        return new Matcher\IsTrue();
+    }
+
+    public static function isTruthy()
+    {
+        return new Matcher\IsTruthy();
+    }
+
+    public static function isType($type)
+    {
+        return new Matcher\IsType($type);
+    }
+
+    public static function lessThan($expected)
+    {
+        return new Matcher\LessThan($expected);
+    }
+
+    public static function lessThanOrEqual($expected)
+    {
+        return self::logicalOr(
+            self::isEqual($expected),
+            self::lessThan($expected)
+        );
+    }
+
+    public static function matchesRegex($pattern)
+    {
+        return new Matcher\MatchesRegex($pattern);
+    }
+
+    public static function doesNotMatchRegex($pattern)
+    {
+        return self::logicalNot(self::matchesRegex($pattern));
+    }
+
+    public static function stringContains($expected)
+    {
+        return new Matcher\StringContains($expected);
+    }
+
+    public static function stringDoesNotContain($expected)
+    {
+        return self::logicalNot(self::stringContains($expected));
+    }
+
+    public static function logicalNot(Matcher $matcher)
     {
         return new Matcher\LogicalNot($matcher);
+    }
+
+    public static function logicalAnd(Matcher $matcher /*...*/)
+    {
+        return new Matcher\LogicalAnd(func_get_args());
+    }
+
+    public static function logicalOr(Matcher $matcher /*...*/)
+    {
+        return new Matcher\LogicalOr(func_get_args());
+    }
+
+    public static function logicalXor(Matcher $matcher /*...*/)
+    {
+        return new Matcher\LogicalXor(func_get_args());
     }
 
     // @codeCoverageIgnoreStart

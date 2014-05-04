@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * @package     Counterpart\Test
+ * @package     Counterpart
  * @copyright   2014 Christopher Davis <http://christopherdavis.me>
  * @license     http://opensource.org/licenses/apache-2.0 Apache-2.0
  */
