@@ -63,6 +63,6 @@ class Callback implements Matcher
      */
     public function __toString()
     {
-        return 'matches a user defined callback';
+        return 'is a value matching a user defined callback';
     }
 }
