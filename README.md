@@ -1,5 +1,7 @@
 # Counterpart
 
+[![Build Status](https://travis-ci.org/chrisguitarguy/Counterpart.svg?branch=master)](https://travis-ci.org/chrisguitarguy/Counterpart)
+
 Counterpart is an object matching framework for PHP inspired by [PHPUnit](http://phpunit.de/)'s
 constraints and [Hamcrest](http://hamcrest.org/).
 
