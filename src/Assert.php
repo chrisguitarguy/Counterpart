@@ -14,27 +14,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * @package     Counterpart
+ * @package     Counterpart\Test
  * @copyright   2014 Christopher Davis <http://christopherdavis.me>
  * @license     http://opensource.org/licenses/apache-2.0 Apache-2.0
  */
 
 namespace Counterpart;
 
-class IntegrationTestCase extends \PHPUnit_Framework_TestCase
+final class Assert
 {
-    protected function matcherReturning($bool)
+    public static function assertThat(Matcher $matcher, $actual, $message='')
     {
-        $matcher = $this->createMatcher();
-        $matcher->expects($this->any())
-            ->method('matches')
-            ->willReturn($bool);
-
-        return $matcher;
+        if (!$matcher->matches($actual)) {
+            throw new Exception\AssertionFailed(sprintf(
+                'Failed asserting that %s %s%s',
+                prettify($actual),
+                (string)$matcher,
+                $message ? "\n\t{$message}" : ''
+            ));
+        }
     }
 
-    protected function createMatcher()
-    {
-        return $this->getMock('Counterpart\\Matcher');
-    }
+    // @codeCoverageIgnoreStart
+    private function __construct() { }
+    // @codeCoverageIgnoreEnd
 }

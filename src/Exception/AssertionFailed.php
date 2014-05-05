@@ -14,27 +14,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * @package     Counterpart
+ * @package     Counterpart\Test
  * @copyright   2014 Christopher Davis <http://christopherdavis.me>
  * @license     http://opensource.org/licenses/apache-2.0 Apache-2.0
  */
 
-namespace Counterpart;
+namespace Counterpart\Exception;
 
-class IntegrationTestCase extends \PHPUnit_Framework_TestCase
+/**
+ * thrown when an assertion fails.
+ *
+ * @since   1.0
+ */
+class AssertionFailed extends \UnexpectedValueException implements CounterpartException
 {
-    protected function matcherReturning($bool)
-    {
-        $matcher = $this->createMatcher();
-        $matcher->expects($this->any())
-            ->method('matches')
-            ->willReturn($bool);
-
-        return $matcher;
-    }
-
-    protected function createMatcher()
-    {
-        return $this->getMock('Counterpart\\Matcher');
-    }
+    // noop
 }

@@ -21,20 +21,14 @@
 
 namespace Counterpart;
 
-class IntegrationTestCase extends \PHPUnit_Framework_TestCase
+class AssertTest extends IntegrationTestCase
 {
-    protected function matcherReturning($bool)
+    /**
+     * @expectedException Counterpart\Exception\AssertionFailed
+     */
+    public function testAssertThanThrowsAssertionFailedWhenMatcherDoesNotMatch()
     {
-        $matcher = $this->createMatcher();
-        $matcher->expects($this->any())
-            ->method('matches')
-            ->willReturn($bool);
-
-        return $matcher;
-    }
-
-    protected function createMatcher()
-    {
-        return $this->getMock('Counterpart\\Matcher');
+        $matcher = $this->matcherReturning(false);
+        Assert::assertThat($matcher, true, 'this should throw');
     }
 }

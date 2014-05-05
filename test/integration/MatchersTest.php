@@ -316,9 +316,4 @@ class MatchersTest extends IntegrationTestCase
     {
         $this->assertInstanceOf('Counterpart\\Matcher', $object);
     }
-
-    private function createMatcher()
-    {
-        return $this->getMock('Counterpart\\Matcher');
-    }
 }
