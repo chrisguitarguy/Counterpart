@@ -75,12 +75,9 @@ class _CountIteratorStub implements \Iterator
 
 class CountTest extends TestCase
 {
-    /**
-     * @expectedException Counterpart\Exception\CounterpartException
-     */
-    public function testNonArrayTraversableOrCountableCausesMatchesToThrow()
+    public function testNonArrayTraversableOrCountableReturnsFalse()
     {
-        (new Count(1))->matches('not an array');
+        $this->assertFalse((new Count(1))->matches('not an array'));
     }
 
     public function countProvider()

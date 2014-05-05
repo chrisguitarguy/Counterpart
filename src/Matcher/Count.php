@@ -81,9 +81,6 @@ class Count implements Matcher
             return iterator_count($actual);
         }
 
-        throw new InvalidArgumentException(sprintf(
-            '%s expects an actual value that is an array or an instance of Countable or Traversable',
-            get_class($this)
-        ));
+        return false;
     }
 }
