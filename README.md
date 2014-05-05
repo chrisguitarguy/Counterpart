@@ -94,10 +94,12 @@ class ValidApiValueMatcher implements Matcher
         return 'is a valid API value: an integer between 1 and 100';
     }
 }
+
+Assert::assertThat(new ValidApiValueMatcher(), $theActualValue);
 ```
 
-This is now a full aware, reusable piece of code who name reinforces it's
-purpose.
+This is now a nicely self contained, reusable piece of code, the name of which
+reinforces it's purpose.
 
 ## License
 

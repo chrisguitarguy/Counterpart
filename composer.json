@@ -24,4 +24,5 @@
             "src/utilities.php"
         ]
     }
+    , "minimum-stability": "dev"
 }
