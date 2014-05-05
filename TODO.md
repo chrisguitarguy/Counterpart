@@ -2,7 +2,7 @@
 
 ## Version 1.0
 
-- [ ] `Assert` object that wraps up assertion throwing errors
+- [x] `Assert` object that wraps up assertion throwing errors
 
 #### Matchers
 

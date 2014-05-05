@@ -35,6 +35,204 @@ final class Assert
         }
     }
 
+    public static function assertContains($expected, $actual, $message='')
+    {
+        return self::assertThat(
+            Matchers::contains($expected),
+            $actual,
+            $message
+        );
+    }
+
+    public static function assertDoesNotContain($expected, $actual, $message='')
+    {
+        return self::assertThat(
+            Matchers::doesNotContain($expected),
+            $actual,
+            $message
+        );
+    }
+
+    public static function assertCount($expectedCount, $countable, $message='')
+    {
+        return self::assertThat(
+            Matchers::count($expectedCount),
+            $countable,
+            $message
+        );
+    }
+
+    public static function assertFileExists($filename, $message='')
+    {
+        return self::assertThat(
+            Matchers::fileExists(),
+            $filename,
+            $message
+        );
+    }
+
+    public static function assertGreaterThan($expected, $actual, $message='')
+    {
+        return self::assertThat(
+            Matchers::greaterThan($expected),
+            $actual,
+            $message
+        );
+    }
+
+    public static function assertGreaterThanOrEqual($expected, $actual, $message='')
+    {
+        return self::assertThat(
+            Matchers::greaterThanOrEqual($expected),
+            $actual,
+            $message
+        );
+    }
+
+    public static function assertLessThan($expected, $actual, $message='')
+    {
+        return self::assertThat(
+            Matchers::lessThan($expected),
+            $actual,
+            $message
+        );
+    }
+
+    public static function assertLessThanOrEqual($expected, $actual, $message='')
+    {
+        return self::assertThat(
+            Matchers::lessThanOrEqual($expected),
+            $actual,
+            $message
+        );
+    }
+
+    public static function assertArrayHasKey($key, $actual, $message='')
+    {
+        return self::assertThat(
+            Matchers::hasKey($key),
+            $actual,
+            $message
+        );
+    }
+
+    public static function assertObjectHasProperty($propName, $object, $message='')
+    {
+        return self::assertThat(
+            Matchers::hasProperty($propName),
+            $object,
+            $message
+        );
+    }
+
+    public static function assertEmpty($actual, $message='')
+    {
+        return self::assertThat(
+            Matchers::isEmpty(),
+            $actual,
+            $message
+        );
+    }
+
+    public static function assertNotEmpty($actual, $message='')
+    {
+        return self::assertThat(
+            Matchers::isNotEmpty(),
+            $actual,
+            $message
+        );
+    }
+
+    public static function assertEquals($expected, $actual, $message='')
+    {
+        return self::assertThat(
+            Matchers::isEqual($expected),
+            $actual,
+            $message
+        );
+    }
+
+    public static function assertIdentical($expected, $actual, $message='')
+    {
+        return self::assertThat(
+            Matchers::isIdentical($expected),
+            $actual,
+            $message
+        );
+    }
+
+    public static function assertFalse($actual, $message='')
+    {
+        return self::assertThat(
+            Matchers::isFalse(),
+            $actual,
+            $message
+        );
+    }
+
+    public static function assertTrue($actual, $message='')
+    {
+        return self::assertThat(
+            Matchers::isTrue(),
+            $actual,
+            $message
+        );
+    }
+
+    public static function assertInstanceOf($classname, $actual, $message='')
+    {
+        return self::assertThat(
+            Matchers::isInstanceOf($classname),
+            $actual,
+            $message
+        );
+    }
+
+    public static function assertNull($actual, $message='')
+    {
+        return self::assertThat(
+            Matchers::isNull(),
+            $actual,
+            $message
+        );
+    }
+
+    public static function assertNotNull($actual, $message='')
+    {
+        return self::assertThat(
+            Matchers::isNotNull(),
+            $actual,
+            $message
+        );
+    }
+
+    public static function assertType($typename, $actual, $message='')
+    {
+        return self::assertThat(
+            Matchers::isType($typename),
+            $actual,
+            $message
+        );
+    }
+
+    public static function assertMatchesRegex($pattern, $actual, $message='')
+    {
+        return self::assertThat(
+            Matchers::matchesRegex($pattern),
+            $actual,
+            $message
+        );
+    }
+
+    public static function assertStringContains($expected, $actual, $message='')
+    {
+        return self::assertThat(
+            Matchers::stringContains($expected),
+            $actual,
+            $message
+        );
+    }
+
     // @codeCoverageIgnoreStart
     private function __construct() { }
     // @codeCoverageIgnoreEnd
