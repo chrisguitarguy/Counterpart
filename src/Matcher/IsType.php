@@ -70,6 +70,6 @@ class IsType implements Matcher
     public function __toString()
     {
         $prefix = in_array($this->type[0], ['a', 'i', 'o', 'u', 'e']) ? 'an' : 'a';
-        return "{$prefix} {$this->type}";
+        return "is {$prefix} {$this->type}";
     }
 }
