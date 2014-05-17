@@ -62,9 +62,16 @@ class LogicalNot implements Matcher
 
     /**
      * {@inheritdoc}
+     * Every matcher in Counter returns a string that beings with is so we can
+     * do things like like....
+     *
+     *    $matcher = new Count(1);
+     *    $message = "Failed Asserting that ".some_thing()." ". ((string)$matcher);
+     *
+     * The `LogicalNot` matcher replaces that `is` with `is not`.
      */
     public function __toString()
     {
-        return "not {$this->matcher}";
+        return preg_replace('/(\b)is(\b)/', '$1is not$2', (string)$this->matcher);
     }
 }

@@ -31,4 +31,15 @@ class LogicalNotTest extends LogicalCombinationTestCase
         $this->assertFalse((new LogicalNot($matcher))->matches("ignored"));
         $this->assertTrue((new LogicalNot($matcher2))->matches("ignored"));
     }
+
+    public function testToStringReplacesIsWithIsNot()
+    {
+        $matcher = $this->getMock('Counterpart\\Matcher');
+        $matcher->expects($this->atLeastOnce())
+            ->method('__toString')
+            ->willReturn('is something');
+
+        $not = new LogicalNot($matcher);
+        $this->assertEquals('is not something', (string)$not);
+    }
 }
