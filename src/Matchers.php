@@ -111,6 +111,11 @@ final class Matchers
         return new Matcher\IsEqual($expected);
     }
 
+    public static function isNotEqual($expected)
+    {
+        return self::logicalNot(self::isEqual($expected));
+    }
+
     public static function isIdentical($expected)
     {
         return new Matcher\IsEqual($expected, true);

@@ -97,6 +97,11 @@ class AssertThrowsTest extends IntegrationTestCase
         Assert::assertEquals(1, 2);
     }
 
+    public function testAssertNotEqualsThrowsWhenValuesAreEqual()
+    {
+        Assert::assertNotEquals(1, 1);
+    }
+
     public function testAssertIdenticalThrowsWhenValuesAreNotIdentical()
     {
         Assert::assertIdentical(new \stdClass, new \stdClass);

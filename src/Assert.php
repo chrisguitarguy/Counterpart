@@ -152,6 +152,15 @@ final class Assert
         );
     }
 
+    public static function assertNotEquals($expected, $actual, $message='')
+    {
+        return self::assertThat(
+            Matchers::isNotEqual($expected),
+            $actual,
+            $message
+        );
+    }
+
     public static function assertIdentical($expected, $actual, $message='')
     {
         return self::assertThat(

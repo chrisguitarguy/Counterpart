@@ -161,6 +161,13 @@ class MatchersTest extends IntegrationTestCase
         $this->assertTrue($eq->matches(1));
     }
 
+    public function testIsNotEqualsMatchesWhenTwoValuesAreNotEqual()
+    {
+        $neq = Matchers::isNotEqual(1);
+        $this->assertMatcher($neq);
+        $this->assertTrue($neq->matches(2));
+    }
+
     public function testIsIdenticalMatchesWhenTwoValuesAreExactlyEqual()
     {
         $iden = Matchers::isIdentical(1);
