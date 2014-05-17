@@ -48,10 +48,18 @@ class Count implements Matcher
      * @since   1.0
      * @access  public
      * @param   string $expectedCount
+     * @throws  InvalidArgumentException if $expectedCount isn't an integer
      * @return  void
      */
     public function __construct($expectedCount)
     {
+        if (!is_int($expectedCount)) {
+            throw new InvalidArgumentException(sprintf(
+                '%s expected $expectedCount to be an integer',
+                __METHOD__
+            ));
+        }
+
         $this->expectedCount = $expectedCount;
     }
 
@@ -68,7 +76,7 @@ class Count implements Matcher
      */
     public function __toString()
     {
-        return "has a count of " . \Counterpart\prettify($this->expectedCount);
+        return "is an array, Countable, or Traversable with a count of {$this->expectedCount}";
     }
 
     private function getCount($actual)
