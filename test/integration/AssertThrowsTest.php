@@ -147,6 +147,11 @@ class AssertThrowsTest extends IntegrationTestCase
         Assert::assertStringContains('here', 'nope nope nope');
     }
 
+    public function testAssertStringDoesNotContainThrowsWhenValueContainsNeedle()
+    {
+        Assert::assertStringDoesNotContain('here', 'here we are');
+    }
+
     protected function setUp()
     {
         $this->setExpectedException('Counterpart\\Exception\\AssertionFailed');

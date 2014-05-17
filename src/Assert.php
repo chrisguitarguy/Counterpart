@@ -242,6 +242,15 @@ final class Assert
         );
     }
 
+    public static function assertStringDoesNotContain($expected, $actual, $message='')
+    {
+        return self::assertThat(
+            Matchers::stringDoesNotContain($expected),
+            $actual,
+            $message
+        );
+    }
+
     // @codeCoverageIgnoreStart
     private function __construct() { }
     // @codeCoverageIgnoreEnd
