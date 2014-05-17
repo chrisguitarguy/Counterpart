@@ -1,7 +1,8 @@
 {
     "name": "counterpart/counterpart"
-    , "description": "A set of generic matchers -- for see if one value matches another"
+    , "description": "A set of generic matchers -- for seeing if one value matches another"
     , "tags": ["testing", "assert", "matcher"]
+    , "license": "Apache-2.0"
     , "authors": [
         {
             "name": "Christopher Davis"
