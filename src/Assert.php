@@ -116,6 +116,15 @@ final class Assert
         );
     }
 
+    public static function assertArrayDoesNotHaveKey($key, $actual, $message='')
+    {
+        return self::assertThat(
+            Matchers::doesNotHaveKey($key),
+            $actual,
+            $message
+        );
+    }
+
     public static function assertObjectHasProperty($propName, $object, $message='')
     {
         return self::assertThat(

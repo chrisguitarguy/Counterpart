@@ -77,6 +77,11 @@ class AssertThrowsTest extends IntegrationTestCase
         Assert::assertArrayHasKey('one', []);
     }
 
+    public function testAssertArrayDoesNotHaveKeyThrowsWhenGivenAnArrayWithExpectedKey()
+    {
+        Assert::assertArrayDoesNotHaveKey('one', ['one' => 2]);
+    }
+
     public function testAssertObjectHasPropertyThrowsWhenGivenObjectWithoutExpectedProperty()
     {
         Assert::assertObjectHasProperty('one', new \stdClass);
