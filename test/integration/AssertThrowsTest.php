@@ -157,6 +157,11 @@ class AssertThrowsTest extends IntegrationTestCase
         Assert::assertStringDoesNotContain('here', 'here we are');
     }
 
+    public function testAssertMatchesPhptFormatThrowsWhenValueDoesNotMatch()
+    {
+        Assert::assertMatchesPhptFormat('%d', 'not an integer');
+    }
+
     protected function setUp()
     {
         $this->setExpectedException('Counterpart\\Exception\\AssertionFailed');

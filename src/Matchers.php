@@ -199,6 +199,11 @@ final class Matchers
         return self::logicalNot(self::stringContains($expected));
     }
 
+    public static function phptFormat($format)
+    {
+        return new Matcher\PhptFormat($format);
+    }
+
     public static function logicalNot(Matcher $matcher)
     {
         return new Matcher\LogicalNot($matcher);

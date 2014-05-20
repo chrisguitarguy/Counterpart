@@ -290,6 +290,13 @@ class MatchersTest extends IntegrationTestCase
         $this->assertTrue($sdc->matches('nope nope nope'));
     }
 
+    public function testPhptFormatMatchesWhenFormatIsMet()
+    {
+        $m = Matchers::phptFormat('%d');
+        $this->assertMatcher($m);
+        $this->assertTrue($m->matches('123'));
+    }
+
     public function testLogicalNotReturnsValidMatcher()
     {
         $this->assertMatcher(Matchers::logicalNot($this->createMatcher()));

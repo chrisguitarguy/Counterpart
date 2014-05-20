@@ -260,6 +260,15 @@ final class Assert
         );
     }
 
+    public static function assertMatchesPhptFormat($format, $actual, $message='')
+    {
+        return self::assertThat(
+            Matchers::phptFormat($format),
+            $actual,
+            $message
+        );
+    }
+
     // @codeCoverageIgnoreStart
     private function __construct() { }
     // @codeCoverageIgnoreEnd
