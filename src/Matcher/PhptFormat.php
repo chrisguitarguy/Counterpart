@@ -65,7 +65,7 @@ use Counterpart\Exception\InvalidArgumentException;
  *      %r[A-Z]+%r would be left alone, jsut the %r bits would be stripped out.
  *
  *
- * @since   1.3
+ * @since   1.2
  */
 class PhptFormat implements Matcher
 {
@@ -75,7 +75,7 @@ class PhptFormat implements Matcher
     /**
      * Set the format.
      *
-     * @since   1.3
+     * @since   1.2
      * @param   string $format
      * @throws  InvalidArgumentException if $format isn't a string
      * @return  void
