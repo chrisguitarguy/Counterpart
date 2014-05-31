@@ -22,6 +22,7 @@
 namespace Counterpart\Matcher;
 
 use Counterpart\Matcher;
+use Counterpart\Negative;
 use Counterpart\Exception\InvalidArgumentException;
 
 /**
@@ -30,7 +31,7 @@ use Counterpart\Exception\InvalidArgumentException;
  *
  * @since   1.0
  */
-class MatchesRegex implements Matcher
+class MatchesRegex implements Matcher, Negative
 {
     /**
      * The regex pattern to match agains.
@@ -80,7 +81,15 @@ class MatchesRegex implements Matcher
      */
     public function __toString()
     {
-        return "is a value matching the regular expression {$this->regexPattern}";
+        return "matches the regular expression {$this->regexPattern}";
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function negativeMessage()
+    {
+        return "does not match the regular expression {$this->regexPattern}";
     }
 
     private function isStringyObject($value)

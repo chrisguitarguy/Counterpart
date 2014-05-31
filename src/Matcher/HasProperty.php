@@ -22,6 +22,7 @@
 namespace Counterpart\Matcher;
 
 use Counterpart\Matcher;
+use Counterpart\Negative;
 use Counterpart\Exception\InvalidArgumentException;
 
 /**
@@ -29,7 +30,7 @@ use Counterpart\Exception\InvalidArgumentException;
  *
  * @since   1.0
  */
-class HasProperty implements Matcher
+class HasProperty implements Matcher, Negative
 {
     /**
      * the property to check for.
@@ -84,5 +85,13 @@ class HasProperty implements Matcher
     public function __toString()
     {
         return "is an object with the property {$this->propertyName}";
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function negativeMessage()
+    {
+        return "is an object without the property {$this->propertyName}";
     }
 }

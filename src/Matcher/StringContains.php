@@ -22,6 +22,7 @@
 namespace Counterpart\Matcher;
 
 use Counterpart\Matcher;
+use Counterpart\Negative;
 use Counterpart\Exception\InvalidArgumentException;
 
 /**
@@ -29,7 +30,7 @@ use Counterpart\Exception\InvalidArgumentException;
  *
  * @since   1.0
  */
-class StringContains implements Matcher
+class StringContains implements Matcher, Negative
 {
     /**
      * The string to search for.
@@ -90,6 +91,14 @@ class StringContains implements Matcher
      */
     public function __toString()
     {
-        return "is a string containing {$this->needle}";
+        return "is a string containing \"{$this->needle}\"";
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function negativeMessage()
+    {
+        return "is a string that does not contain \"{$this->needle}\"";
     }
 }

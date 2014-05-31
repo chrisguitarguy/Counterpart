@@ -35,6 +35,15 @@ final class Assert
         }
     }
 
+    public static function assertCallback(callable $callback, $actual, $message='')
+    {
+        return self::assertThat(
+            Matchers::callback($callback),
+            $actual,
+            $message
+        );
+    }
+
     public static function assertContains($expected, $actual, $message='')
     {
         return self::assertThat(

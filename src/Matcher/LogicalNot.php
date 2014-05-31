@@ -22,6 +22,7 @@
 namespace Counterpart\Matcher;
 
 use Counterpart\Matcher;
+use Counterpart\Negative;
 
 /**
  * Test a matcher and negates it.
@@ -72,6 +73,10 @@ class LogicalNot implements Matcher
      */
     public function __toString()
     {
+        if ($this->matcher instanceof Negative) {
+            return $this->matcher->negativeMessage();
+        }
+
         return preg_replace('/(\b)is(\b)/', '$1is not$2', (string)$this->matcher);
     }
 }

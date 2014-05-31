@@ -42,4 +42,40 @@ class LogicalNotTest extends LogicalCombinationTestCase
         $not = new LogicalNot($matcher);
         $this->assertEquals('is not something', (string)$not);
     }
+
+    public function testToStringCallsNegativeMessageWhenANegativeInterfaceIsFound()
+    {
+        $msg = 'does not match';
+        $matcher = new _NegMatcherStub($msg);
+
+        $not = new LogicalNot($matcher);
+        $this->assertEquals($msg, (string)$not);
+    }
 }
+
+// can't seem to get PHPUnit to stub multple interfaces
+class _NegMatcherStub implements \Counterpart\Matcher, \Counterpart\Negative
+{
+    private $msg;
+
+    public function __construct($msg)
+    {
+        $this->msg = $msg;
+    }
+
+    public function negativeMessage()
+    {
+        return $this->msg;
+    }
+
+    public function matches($actual)
+    {
+        return true;
+    }
+
+    public function __toString()
+    {
+        return 'always matches';
+    }
+}
+

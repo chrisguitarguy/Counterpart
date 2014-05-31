@@ -32,6 +32,13 @@ class AssertThrowsTest extends IntegrationTestCase
         Assert::assertThat($matcher, true, 'this should throw');
     }
 
+    public function testAssertCallbackThrowsWhenUserDefinedCallbackReturnsFalse()
+    {
+        Assert::assertCallback(function () {
+            return false;
+        }, 'ignored');
+    }
+
     public function testAssertContainsThrowsWhenArrayDoesNotContainExpected()
     {
         Assert::assertContains(123, [234, 455], 'this should throw');

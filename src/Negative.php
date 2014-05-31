@@ -14,44 +14,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * @package     Counterpart\Test
+ * @package     Counterpart
  * @copyright   2014 Christopher Davis <http://christopherdavis.me>
  * @license     http://opensource.org/licenses/apache-2.0 Apache-2.0
  */
 
-namespace Counterpart\Matcher;
-
-use Counterpart\Matcher;
-use Counterpart\Negative;
+namespace Counterpart;
 
 /**
- * Matches any value.
+ * Marks a matcher as being aware that it may be used within a `LogicalNot`. When
+ * `LogicalNot::__toString` is called, the `negativeMessage` will be called to
+ * describe the failure.
  *
- * @since   1.0
+ * @since    1.3
  */
-class Anything implements Matcher, Negative
+interface Negative
 {
     /**
-     * {@inheritdoc}
+     * Describe the opposive of the match. If the matcher's `__toString` method
+     * returned something 'is equal to "SomeValue"' then `negativeMessage` might
+     * return something like 'is not equal to "SomeValue"'.
+     *
+     * @since   1.3
+     * @return  string
      */
-    public function matches($actual)
-    {
-        return true;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __toString()
-    {
-        return 'is anything';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function negativeMessage()
-    {
-        return 'is nothing';
-    }
+    public function negativeMessage();
 }

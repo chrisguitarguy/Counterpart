@@ -22,13 +22,14 @@
 namespace Counterpart\Matcher;
 
 use Counterpart\Matcher;
+use Counterpart\Negative;
 
 /**
  * Checks to see if an array (or ArrayAccess implementation) has a given key.
  *
  * @since   1.0
  */
-class HasKey implements Matcher
+class HasKey implements Matcher, Negative
 {
     /**
      * the key to check for.
@@ -73,6 +74,19 @@ class HasKey implements Matcher
      */
     public function __toString()
     {
-        return "is an array or ArrayAccess implementation with the key " . \Counterpart\prettify($this->key);
+        return 'is an array or ArrayAccess with the key '.$this->prettyKey();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function negativeMessage()
+    {
+        return 'is an array or ArrayAccess without the key '.$this->prettyKey();
+    }
+
+    private function prettyKey()
+    {
+        return \Counterpart\prettify($this->key);
     }
 }
