@@ -32,6 +32,28 @@ class AssertThrowsTest extends IntegrationTestCase
         Assert::assertThat($matcher, true, 'this should throw');
     }
 
+    public function testAssertCallbackThrowsWhenUserDefinedCallbackReturnsFalse()
+    {
+        Assert::assertCallback(function () {
+            return false;
+        }, 'ignored');
+    }
+
+    public function testAssertCallbackThrowsWhenWrappedInLogicalNotAndReturningTrue()
+    {
+        // have to call this again here to get the message
+        $this->setExpectedException(
+            'Counterpart\\Exception\\AssertionFailed',
+            'does not match a user defined callback'
+        );
+
+        $matcher = Matchers::logicalNot(Matchers::callback(function () {
+            return true;
+        }));
+
+        Assert::assertThat($matcher, 'ignored');
+    }
+
     public function testAssertContainsThrowsWhenArrayDoesNotContainExpected()
     {
         Assert::assertContains(123, [234, 455], 'this should throw');
