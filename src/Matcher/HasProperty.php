@@ -30,7 +30,7 @@ use Counterpart\Exception\InvalidArgumentException;
  *
  * @since   1.0
  */
-class HasProperty implements Matcher
+class HasProperty implements Matcher, Negative
 {
     /**
      * the property to check for.

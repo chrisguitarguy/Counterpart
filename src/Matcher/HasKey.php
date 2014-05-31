@@ -29,7 +29,7 @@ use Counterpart\Negative;
  *
  * @since   1.0
  */
-class HasKey implements Matcher
+class HasKey implements Matcher, Negative
 {
     /**
      * the key to check for.
