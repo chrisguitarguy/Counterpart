@@ -30,12 +30,15 @@ namespace Counterpart;
  */
 interface Describer
 {
+    // describeMismatch may decline to build a description by returning this
+    const DECLINE_DESCRIPTION = false;
+
     /**
      * Describe how $actual doesn't match the expected.
      *
      * @since   1.2
      * @param   string $actual
-     * @return  string
+     * @return  string|DECLINE_DESCRIPTION
      */
     public function describeMismatch($actual);
 }
