@@ -22,6 +22,7 @@
 namespace Counterpart\Matcher;
 
 use Counterpart\Matcher;
+use Counterpart\Negative;
 use Counterpart\Exception\InvalidArgumentException;
 
 /**
@@ -30,7 +31,7 @@ use Counterpart\Exception\InvalidArgumentException;
  *
  * @since   1.0
  */
-class Contains implements Matcher
+class Contains implements Matcher, Negative
 {
     /**
      * The value to search for.
@@ -84,6 +85,19 @@ class Contains implements Matcher
      */
     public function __toString()
     {
-        return 'is an array or Traversable containing ' . \Counterpart\prettify($this->expected);
+        return 'is an array or Traversable containing '.$this->prettyExpected();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function negativeMessage()
+    {
+        return 'is an array or Traversable that does not contain '.$this->prettyExpected();
+    }
+
+    private function prettyExpected()
+    {
+        return \Counterpart\prettify($this->expected);
     }
 }

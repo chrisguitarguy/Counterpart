@@ -22,13 +22,14 @@
 namespace Counterpart\Matcher;
 
 use Counterpart\Matcher;
+use Counterpart\Negative;
 
 /**
  * Matches any value.
  *
  * @since   1.0
  */
-class Anything implements Matcher
+class Anything implements Matcher, Negative
 {
     /**
      * {@inheritdoc}
@@ -44,5 +45,13 @@ class Anything implements Matcher
     public function __toString()
     {
         return 'is anything';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function negativeMessage()
+    {
+        return 'is nothing';
     }
 }
