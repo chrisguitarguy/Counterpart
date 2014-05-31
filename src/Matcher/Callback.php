@@ -22,13 +22,14 @@
 namespace Counterpart\Matcher;
 
 use Counterpart\Matcher;
+use Counterpart\Negative;
 
 /**
  * Run a value through a callback.
  *
  * @since   1.0
  */
-class Callback implements Matcher
+class Callback implements Matcher, Negative
 {
     /**
      * The callback that the value is to be run through
@@ -63,6 +64,14 @@ class Callback implements Matcher
      */
     public function __toString()
     {
-        return 'is a value matching a user defined callback';
+        return 'matches user defined callback';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function negativeMessage()
+    {
+        return 'does not match a user defined callback';
     }
 }
