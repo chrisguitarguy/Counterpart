@@ -41,4 +41,13 @@ class UtilitiesTest extends IntegrationTestCase
         $obj->prop->three = "three";
         $this->assertInternalType('string', prettify($obj));
     }
+
+    public function testDiffReturnsStringWithExpectedHeaderAndDiff()
+    {
+        $diff = diff('one', 'two');
+
+        $this->assertInternalType('string', $diff);
+        $this->assertContains('--- Expected', $diff);
+        $this->assertContains('+++ Actual', $diff);
+    }
 }

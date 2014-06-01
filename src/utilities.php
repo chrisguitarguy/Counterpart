@@ -22,6 +22,7 @@
 namespace Counterpart;
 
 use SebastianBergmann\Exporter\Exporter;
+use SebastianBergmann\Diff\Differ;
 
 /**
  * Export a variable to a pretty string representation.
@@ -40,4 +41,22 @@ function prettify($var)
     }
 
     return $exporter->export($var);
+}
+
+/**
+ * Diff two strings and return their result.
+ *
+ * @since   1.3
+ * @param   string $expected
+ * @param   string $actual
+ * @return  string The generated diff
+ */
+function diff($expected, $actual)
+{
+    static $differ = null;
+    if (null === $differ) {
+        $differ = new Differ('--- Expected'.PHP_EOL.'+++ Actual'.PHP_EOL);
+    }
+
+    return trim($differ->diff($expected, $actual));
 }
