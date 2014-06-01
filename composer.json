@@ -1,6 +1,7 @@
 {
     "name": "counterpart/counterpart"
     , "description": "A set of generic matchers -- for seeing if one value matches another"
+    , "type": "library"
     , "tags": ["testing", "assert", "matcher"]
     , "license": "Apache-2.0"
     , "authors": [
@@ -13,9 +14,10 @@
     , "require": {
         "php": ">=5.4"
         , "sebastian/exporter": "~1.0"
+        , "sebastian/diff": "~1.1"
     }
     , "require-dev": {
-        "phpunit/phpunit": "~4.0"
+        "phpunit/phpunit": "~4.1"
     }
     , "autoload": {
         "psr-4": {
@@ -25,5 +27,4 @@
             "src/utilities.php"
         ]
     }
-    , "minimum-stability": "dev"
 }

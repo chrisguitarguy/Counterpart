@@ -26,12 +26,21 @@ final class Assert
     public static function assertThat(Matcher $matcher, $actual, $message='')
     {
         if (!$matcher->matches($actual)) {
-            throw new Exception\AssertionFailed(sprintf(
+            $message = sprintf(
                 'Failed asserting that %s %s%s',
                 prettify($actual),
                 (string)$matcher,
-                $message ? "\n\t{$message}" : ''
-            ));
+                $message ? "\n{$message}" : ''
+            );
+
+            if ($matcher instanceof Describer) {
+                $desc = $matcher->describeMismatch($actual);
+                if (Describer::DECLINE_DESCRIPTION !== $desc) {
+                    $message .= "\n{$desc}";
+                }
+            }
+
+            throw new Exception\AssertionFailed($message);
         }
     }
 

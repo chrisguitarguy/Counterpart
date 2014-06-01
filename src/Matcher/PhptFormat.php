@@ -22,6 +22,7 @@
 namespace Counterpart\Matcher;
 
 use Counterpart\Matcher;
+use Counterpart\Describer;
 use Counterpart\Exception\InvalidArgumentException;
 
 /**
@@ -67,7 +68,7 @@ use Counterpart\Exception\InvalidArgumentException;
  *
  * @since   1.2
  */
-class PhptFormat implements Matcher
+class PhptFormat implements Matcher, Describer
 {
     private $format;
     private $regex = null;
@@ -111,6 +112,18 @@ class PhptFormat implements Matcher
     public function __toString()
     {
         return "is a string matching the phpt format {$this->format}";
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function describeMismatch($actual)
+    {
+        if (!$this->isStringy($actual)) {
+            return 'actual value was not a string';
+        }
+
+        return \Counterpart\diff($this->format, (string)$actual);
     }
 
     private function isStringy($value)

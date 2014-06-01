@@ -31,6 +31,8 @@ use Counterpart\Exception\InvalidArgumentException;
  */
 class IsType implements Matcher
 {
+    use TypeTrait;
+
     /**
      * the type to check against.
      *
@@ -69,7 +71,11 @@ class IsType implements Matcher
      */
     public function __toString()
     {
-        $prefix = in_array($this->type[0], ['a', 'i', 'o', 'u', 'e']) ? 'an' : 'a';
-        return "is {$prefix} {$this->type}";
+        $art = $this->typeArticle($this->type);
+        return sprintf(
+            'is %s%s',
+            $art ? "{$art} " : '',
+            $this->type
+        );
     }
 }

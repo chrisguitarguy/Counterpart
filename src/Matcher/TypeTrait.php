@@ -19,44 +19,28 @@
  * @license     http://opensource.org/licenses/apache-2.0 Apache-2.0
  */
 
-namespace Counterpart;
-
-use SebastianBergmann\Exporter\Exporter;
-use SebastianBergmann\Diff\Differ;
+namespace Counterpart\Matcher;
 
 /**
- * Export a variable to a pretty string representation.
- *
- * This uses a library to do the heavy lifting.
- *
- * @since   1.0
- * @param   mixed $var
- * @return  string
- */
-function prettify($var)
-{
-    static $exporter = null; // boooo global variables!
-    if (null === $exporter) {
-        $exporter = new Exporter();
-    }
-
-    return $exporter->export($var);
-}
-
-/**
- * Diff two strings and return their result.
+ * Provides some utilities for dealing with internal types.
  *
  * @since   1.3
- * @param   string $expected
- * @param   string $actual
- * @return  string The generated diff
  */
-function diff($expected, $actual)
+trait TypeTrait
 {
-    static $differ = null;
-    if (null === $differ) {
-        $differ = new Differ('--- Expected'.PHP_EOL.'+++ Actual'.PHP_EOL);
-    }
+    /**
+     * Get the appropriate article prefix for a type. (a or an)
+     *
+     * @since   1.3
+     * @param   $typeName
+     * @return  string|null Null if the type requires no prefix (ala numeric)
+     */
+    public function typeArticle($type)
+    {
+        if ('numeric' === $type) {
+            return null;
+        }
 
-    return trim($differ->diff($expected, $actual));
+        return in_array($type[0], ['a', 'i', 'o', 'u', 'e']) ? 'an' : 'a';
+    }
 }
