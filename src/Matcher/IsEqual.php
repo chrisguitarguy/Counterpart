@@ -22,14 +22,17 @@
 namespace Counterpart\Matcher;
 
 use Counterpart\Matcher;
+use Counterpart\Describer;
 
 /**
  * Check a value agains another with non-strict equality (the == operator)
  *
  * @since   1.0
  */
-class IsEqual implements Matcher
+class IsEqual implements Matcher, Describer
 {
+    use TypeTrait;
+
     /**
      * The value to check against.
      *
@@ -78,5 +81,28 @@ class IsEqual implements Matcher
     public function __toString()
     {
         return "is equal to " . \Counterpart\prettify($this->expected);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function describeMismatch($actual)
+    {
+        $type = gettype($this->expected);
+        $type = 'boolean' === $type ? 'bool' : $type;
+        if (function_exists("is_{$type}") && !call_user_func("is_{$type}", $actual)) {
+            $art = $this->typeArticle($type);
+            return sprintf(
+                'actual value was not %s%s',
+                $art ? "{$art} " : '',
+                $type
+            );
+        }
+
+        if (is_string($actual) && is_string($this->expected)) {
+            return \Counterpart\diff($this->expected, $actual);
+        }
+
+        return Describer::DECLINE_DESCRIPTION;
     }
 }

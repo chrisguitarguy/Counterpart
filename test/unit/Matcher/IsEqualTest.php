@@ -109,4 +109,33 @@ class IsEqualTest extends TestCase
     {
         $this->assertFalse((new IsEqual($expected, true))->matches($actual));
     }
+
+    public function testDescribeMismatchWithDifferingTypesTellsUser()
+    {
+        $eq = new IsEqual('a string', true);
+
+        $this->assertContains('not a string', $eq->describeMismatch(['an', 'array']));
+    }
+
+    public function testBooleanTypeWithDescribeMismatchStillTellsUserAboutTypeDifference()
+    {
+        $eq = new IsEqual(false);
+        $this->assertContains('not a bool', $eq->describeMismatch(['an', 'array']));
+    }
+
+    public function testDescribeMismatchWithTypeStringsGeneratesADiff()
+    {
+        $eq = new IsEqual('one');
+
+        $diff = $eq->describeMismatch('two');
+        $this->assertContains('--- Expected', $diff);
+        $this->assertContains('+++ Actual', $diff);
+    }
+
+    public function testDescribeMismatchWithMatchingTypesAndNoStringsDeclinesDescription()
+    {
+        $eq = new IsEqual(false);
+
+        $this->assertEquals(\Counterpart\Describer::DECLINE_DESCRIPTION, $eq->describeMismatch(true));
+    }
 }
