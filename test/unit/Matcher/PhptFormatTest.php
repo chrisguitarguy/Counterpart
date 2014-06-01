@@ -25,6 +25,8 @@ use Counterpart\TestCase;
 
 class PhptFormatTest extends TestCase
 {
+    const FORMAT = "here %s\nversion %s";
+
     /**
      * @expectedException Counterpart\Exception\CounterpartException
      */
@@ -78,5 +80,22 @@ class PhptFormatTest extends TestCase
         $m = new PhptFormat($format);
 
         $this->assertTrue($m->matches($shouldMatch));
+    }
+
+    public function testDescribeMismatchWithANonStringTellsUsAboutIt()
+    {
+        $matcher = new PhptFormat(self::FORMAT);
+        $desc = $matcher->describeMismatch(false);
+
+        $this->assertContains('not a string', $desc);
+    }
+
+    public function testDescribeMismatchReturnsDiffWhenGivenAString()
+    {
+        $matcher = new PhptFormat(self::FORMAT);
+        $desc = $matcher->describeMismatch("here 123\nversion 234");
+
+        $this->assertContains('--- Expected', $desc);
+        $this->assertContains('+++ Actual', $desc);
     }
 }
