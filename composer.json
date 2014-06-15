@@ -2,7 +2,7 @@
     "name": "counterpart/counterpart"
     , "description": "A set of generic matchers -- for seeing if one value matches another"
     , "type": "library"
-    , "tags": ["testing", "assert", "matcher"]
+    , "keywords": ["testing", "assert", "matcher"]
     , "license": "Apache-2.0"
     , "authors": [
         {
