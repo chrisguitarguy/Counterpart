@@ -17,6 +17,9 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   matchers
+   custom-matchers
+
 Quickstart
 ----------
 
