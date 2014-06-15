@@ -54,6 +54,13 @@ class HasPropertyTest extends TestCase
         $this->assertTrue((new HasProperty('prop'))->matches($o));
     }
 
+    public function testMatchesReturnsFalseWithNonPublicPropertiesWhenAllowPrivateIsFalse()
+    {
+        $this->assertTrue((new HasProperty('publicProp', false))->matches($this));
+        $this->assertFalse((new HasProperty('protectedProp', false))->matches($this));
+        $this->assertFalse((new HasProperty('privateProp', false))->matches($this));
+    }
+
     /**
      * @expectedException Counterpart\Exception\CounterpartException
      */

@@ -42,15 +42,25 @@ class HasProperty implements Matcher, Negative
     private $propertyName;
 
     /**
+     * Whether or not to allow matching of non-public properties.
+     *
+     * @since   1.3.1
+     * @var     boolean
+     */
+    private $allowPrivate;
+
+    /**
      * Constructor. Set the key to look for.
      *
      * @since   1.0
      * @access  public
      * @param   string $propertyName
+     * @param   boolean $allowPrivate If true, non-public properties will be
+     *          matched. The default is true.
      * @throws  InvalidArgumentException if the property name isn't a string
      * @return  void
      */
-    public function __construct($propertyName)
+    public function __construct($propertyName, $allowPrivate=true)
     {
         if (!is_string($propertyName)) {
             throw new InvalidArgumentException(sprintf(
@@ -59,6 +69,7 @@ class HasProperty implements Matcher, Negative
             ));
         }
         $this->propertyName = $propertyName;
+        $this->allowPrivate = (bool)$allowPrivate;
     }
 
     /**
@@ -70,13 +81,13 @@ class HasProperty implements Matcher, Negative
             return false;
         }
 
-        // we use reflection here because null public properties would cause
-        // isset to be false and private props would make PHP complain.
-        $ref = new \ReflectionObject($actual);
+        try {
+            $prop = new \ReflectionProperty($actual, $this->propertyName);
+        } catch (\ReflectionException $e) {
+            return false;
+        }
 
-        // XXX should this be allowed to check non-public properties?
-        // seems like it would break encapsulation a bit.
-        return $ref->hasProperty($this->propertyName);
+        return $prop->isPublic() || $this->allowPrivate;
     }
 
     /**
