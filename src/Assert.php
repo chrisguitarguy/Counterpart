@@ -21,7 +21,7 @@
 
 namespace Counterpart;
 
-final class Assert
+trait Assert
 {
     public static function assertThat(Matcher $matcher, $actual, $message='')
     {
@@ -286,8 +286,4 @@ final class Assert
             $message
         );
     }
-
-    // @codeCoverageIgnoreStart
-    private function __construct() { }
-    // @codeCoverageIgnoreEnd
 }

@@ -26,7 +26,7 @@ namespace Counterpart;
  *
  * @since   1.0
  */
-final class Matchers
+trait Matchers
 {
     public static function anything()
     {
@@ -223,8 +223,4 @@ final class Matchers
     {
         return new Matcher\LogicalXor(func_get_args());
     }
-
-    // @codeCoverageIgnoreStart
-    private function __construct() { }
-    // @codeCoverageIgnoreEnd
 }
