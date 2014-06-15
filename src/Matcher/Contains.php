@@ -23,7 +23,6 @@ namespace Counterpart\Matcher;
 
 use Counterpart\Matcher;
 use Counterpart\Negative;
-use Counterpart\Exception\InvalidArgumentException;
 
 /**
  * Check to see if an array or traversable-implementating-object contains
