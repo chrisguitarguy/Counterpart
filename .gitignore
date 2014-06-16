@@ -1,6 +1,7 @@
 /coverage/*
 /composer.lock
 /vendor/*
+/sami/*
 
 # ignore certain files
 *.pyc
