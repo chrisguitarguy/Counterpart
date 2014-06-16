@@ -21,6 +21,12 @@ Contents:
    logical-combinations
    custom-matchers
 
+Links
+-----
+
+- `Github Repo <https://github.com/chrisguitarguy/Counterpart>`_
+- `API Documentation <http://api.counterpartphp.org>`_
+
 Quickstart
 ----------
 
