@@ -84,3 +84,15 @@ the matcher fails.
 
     Assert::assertEquals(10, 10, "two values that are equal are not matching as equal, something is wrong");
     Assert::assertFileExists(__FILE__);
+
+It's also passible to use a custom matcher with the ``Assert`` trait directly.
+Simple paces an instance of ``Counterpart\Matcher`` as the first argument to
+``Assert::assertThat``.
+
+.. code-block:: php
+
+    <?php
+    use Counterpart\Assert;
+    use Counterpart\Matcher\IsEqual;
+
+    Assert::assertThat(new IsEqual(1), 1, "1 != 1, something is very broken");
