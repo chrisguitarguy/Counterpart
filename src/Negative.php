@@ -31,7 +31,7 @@ namespace Counterpart;
 interface Negative
 {
     /**
-     * Describe the opposive of the match. If the matcher's `__toString` method
+     * Describe the opposite of the match. If the matcher's `__toString` method
      * returned something 'is equal to "SomeValue"' then `negativeMessage` might
      * return something like 'is not equal to "SomeValue"'.
      *
