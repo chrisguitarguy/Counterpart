@@ -25,7 +25,7 @@ use Counterpart\Matcher;
 use Counterpart\Negative;
 
 /**
- * Run a value through a callback.
+ * Run a value through a user-defined callback.
  *
  * @since   1.0
  */
@@ -35,7 +35,7 @@ class Callback implements Matcher, Negative
      * The callback that the value is to be run through
      *
      * @since   1.0
-     * @var     string
+     * @var     callable
      */
     private $callback;
 

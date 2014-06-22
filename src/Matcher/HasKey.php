@@ -45,7 +45,7 @@ class HasKey implements Matcher, Negative
      *
      * @since   1.0
      * @access  public
-     * @param   mixed $key
+     * @param   mixed $key The key for which the actual array will be checked.
      * @return  void
      */
     public function __construct($key)

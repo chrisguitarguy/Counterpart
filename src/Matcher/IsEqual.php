@@ -25,7 +25,7 @@ use Counterpart\Matcher;
 use Counterpart\Describer;
 
 /**
- * Check a value agains another with non-strict equality (the == operator)
+ * Check a value agains another with strict (===) or non-strict equality.
  *
  * @since   1.0
  */
@@ -42,7 +42,7 @@ class IsEqual implements Matcher, Describer
     private $expected;
 
     /**
-     * Whether or not to use strict equality
+     * Whether or not to use strict equality.
      *
      * @since   1.0
      * @var     boolean
@@ -53,8 +53,8 @@ class IsEqual implements Matcher, Describer
      * Constructor. Set expected value
      *
      * @since   1.0
-     * @param   string $expected
-     * @param   boolean $strict
+     * @param   mixed $expected A value the actual value is meant to equal
+     * @param   boolean $strict Whether or not to use strict equality (default: false)
      * @return  void
      */
     public function __construct($expected, $strict=false)
