@@ -28,26 +28,56 @@ namespace Counterpart;
  */
 trait Matchers
 {
+    /**
+     * Create and return a new anything matcher.
+     *
+     * @return  Matcher\Anything
+     */
     public static function anything()
     {
         return new Matcher\Anything();
     }
 
+    /**
+     * Create and return a new Callback matcher.
+     *
+     * @param   callable $callback The callback through which the actual value
+     *          will be run.
+     * @return  Matcher\Callback
+     */
     public static function callback(callable $callback)
     {
         return new Matcher\Callback($callback);
     }
 
+    /**
+     * Creates and returns a new Contains matcher.
+     *
+     * @param   mixed $expected The value to look for in the array or Traversable
+     * @return  Matcher\Contains
+     */
     public static function contains($expected)
     {
         return new Matcher\Contains($expected);
     }
 
+    /**
+     * Creates and returns a new Contains wrapped in a LogicalNot.
+     *
+     * @param   mixed $expected The value to look for in the array or Traversable
+     * @return  Matcher\LogicalNot
+     */
     public static function doesNotContain($expected)
     {
         return self::logicalNot(self::contains($expected));
     }
 
+    /**
+     * Creates and returns a new Count matcher.
+     *
+     * @param   int $expectedCount The expected value to be returned from `count`
+     * @return  Matcher\Count
+     */
     public static function count($expectedCount)
     {
         return new Matcher\Count($expectedCount);

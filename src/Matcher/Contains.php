@@ -53,8 +53,9 @@ class Contains implements Matcher, Negative
      * is enabled.
      *
      * @since   1.0
-     * @param   mixed $expected
-     * @param   boolean $strict
+     * @param   mixed $expected The value to look for in the array or Traversable
+     * @param   boolean $strict Whether or not to use strict equality when searching
+     *          the actual value.
      * @return  void
      */
     public function __construct($expected, $strict=true)
@@ -65,6 +66,8 @@ class Contains implements Matcher, Negative
 
     /**
      * {@inheritdoc}
+     * @param   array|Traversable $actual The value in which the the matcher
+     *          will search for the expected value
      */
     public function matches($actual)
     {
