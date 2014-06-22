@@ -11,6 +11,7 @@ generateapi:
 
 uploadapi: generateapi
 	aws s3 sync --delete --exclude PROJECT_VERSION --exclude SAMI_VERSION sami/build/ s3://api.counterpartphp.org
+	aws s3 sync sami/build/master/ s3://api.counterpartphp.org
 
 cleanapi:
 	rm -rf sami
