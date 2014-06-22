@@ -20,12 +20,8 @@ Contents:
    matchers
    logical-combinations
    custom-matchers
-
-Links
------
-
-- `Github Repo <https://github.com/chrisguitarguy/Counterpart>`_
-- `API Documentation <http://api.counterpartphp.org>`_
+   Github <https://github.com/chrisguitarguy/Counterpart>
+   API Documentation <http://api.counterpartphp.org>
 
 Quickstart
 ----------
