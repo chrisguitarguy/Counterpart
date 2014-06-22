@@ -21,8 +21,6 @@
 
 namespace Counterpart;
 
-use Counterpart\Exception\AssertionFailed;
-
 /**
  * A mess of static functions that create matchers and run them through assertions.
  *
@@ -39,7 +37,8 @@ trait Assert
      * @param   mixed $actual The actual, real-world value
      * @param   string $message An optional message that describes why the
      *          assertion is important.
-     * @throws  AssertionFailed if the matcher is not successful
+     * @throws  Counterpart\Exception\AssertionFailed if the matcher is not successful
+     * @return  void
      */
     public static function assertThat(Matcher $matcher, $actual, $message='')
     {
@@ -61,7 +60,7 @@ trait Assert
             }
         }
 
-        throw new AssertionFailed($message);
+        throw new Exception\AssertionFailed($message);
     }
 
     /**
@@ -72,7 +71,8 @@ trait Assert
      * @param   mixed $actual The actual, real-world value
      * @param   string $message An optional message taht describes why the
      *          assertion is important.
-     * @throws  Exception\AssertionFailed if the callback returns false
+     * @throws  Counterpart\Exception\AssertionFailed if the callback returns false
+     * @return  void
      */
     public static function assertCallback(callable $callback, $actual, $message='')
     {
@@ -90,7 +90,8 @@ trait Assert
      * @param   array|Traversable $actual The actual, real-world value to check
      * @param   string $message An optional message that describes why the
      *          assertion is important.
-     * @throws  Exception\AssertionFailed if $actual does not contain the expected value
+     * @throws  Counterpart\Exception\AssertionFailed if $actual does not contain the expected value
+     * @return  void
      */
     public static function assertContains($expected, $actual, $message='')
     {
@@ -108,7 +109,8 @@ trait Assert
      * @param   array|Traversable $actual The actual, real-world value to check
      * @param   string $message An optional message that describes why the
      *          assertion is important.
-     * @throws  Exception\AssertionFailed if $actual contains the expected value
+     * @throws  Counterpart\Exception\AssertionFailed if $actual contains the expected value
+     * @return  void
      */
     public static function assertDoesNotContain($expected, $actual, $message='')
     {
@@ -129,7 +131,8 @@ trait Assert
      *          value to count.
      * @param   string $message An optional message that describes why the
      *          assertion is important.
-     * @throws  Exception\AssertionFailed if $countable does not have the expected count
+     * @throws  Counterpart\Exception\AssertionFailed if $countable does not have the expected count
+     * @return  void
      */
     public static function assertCount($expectedCount, $countable, $message='')
     {
@@ -146,7 +149,8 @@ trait Assert
      * @param   string $filename The file name to check.
      * @param   string $message An optional message that describes why the
      *          assertion is important.
-     * @throws  Exception\AssertionFailed if the file does not exist
+     * @throws  Counterpart\Exception\AssertionFailed if the file does not exist
+     * @return  void
      */
     public static function assertFileExists($filename, $message='')
     {
@@ -164,7 +168,8 @@ trait Assert
      * @param   numeric $actual The real-world number to check
      * @param   string $message An optional message that describes why the
      *          assertion is important.
-     * @throws  Exception\AssertionFailed if $actual is less than or equal to $expected
+     * @throws  Counterpart\Exception\AssertionFailed if $actual is less than or equal to $expected
+     * @return  void
      */
     public static function assertGreaterThan($expected, $actual, $message='')
     {
@@ -183,7 +188,8 @@ trait Assert
      * @param   numeric $actua The real-world number to check
      * @param   string $message An optional message that describes why the
      *          assertion is important.
-     * @throws  Exception\AssertionFailed if $actual is less than $expected
+     * @throws  Counterpart\Exception\AssertionFailed if $actual is less than $expected
+     * @return  void
      */
     public static function assertGreaterThanOrEqual($expected, $actual, $message='')
     {
@@ -201,7 +207,8 @@ trait Assert
      * @param   numeric $actual The real-world number to check
      * @param   string $message An optional message that describes why the
      *          assertion is important.
-     * @throws  Exception\AssertionFailed if $actual is greater than or equal to $expected
+     * @throws  Counterpart\Exception\AssertionFailed if $actual is greater than or equal to $expected
+     * @return  void
      */
     public static function assertLessThan($expected, $actual, $message='')
     {
@@ -220,7 +227,8 @@ trait Assert
      * @param   numeric $actual The real-world number to check
      * @param   string $message An optional message that describes why the
      *          assertion is important.
-     * @throws  Exception\AssertionFailed if $actual is greater than $expected
+     * @throws  Counterpart\Exception\AssertionFailed if $actual is greater than $expected
+     * @return  void
      */
     public static function assertLessThanOrEqual($expected, $actual, $message='')
     {
@@ -238,7 +246,8 @@ trait Assert
      * @param   array|ArrayAccess $actual The actual, real-world value to check
      * @param   string $message An optional message that describes why the
      *          assertion is important.
-     * @throws  Exception\AssertionFailed if $actual does not contain $key
+     * @throws  Counterpart\Exception\AssertionFailed if $actual does not contain $key
+     * @return  void
      */
     public static function assertArrayHasKey($key, $actual, $message='')
     {
@@ -256,7 +265,8 @@ trait Assert
      * @param   array|ArrayAccess $actual The actual, real-world value to check
      * @param   string $message An optional message that describes why the
      *          assertion is important.
-     * @throws  Exception\AssertionFailed if $actual contains $key
+     * @throws  Counterpart\Exception\AssertionFailed if $actual contains $key
+     * @return  void
      */
     public static function assertArrayDoesNotHaveKey($key, $actual, $message='')
     {
@@ -275,8 +285,9 @@ trait Assert
      * @param   object $object The actual, real-world value
      * @param   string $message An optional message that describes why the
      *          assertion is important.
-     * @throws  Exception\AssertionFailed if $object does not have a property
+     * @throws  Counterpart\Exception\AssertionFailed if $object does not have a property
      *          named $propName
+     * @return  void
      */
     public static function assertObjectHasProperty($propName, $object, $message='')
     {
@@ -293,7 +304,8 @@ trait Assert
      * @param   mixed $actual The actual, real-world value to check
      * @param   string $message An optional message that describes why the
      *          assertion is important.
-     * @throws  Exception\AssertionFailed if $actual is not empty
+     * @throws  Counterpart\Exception\AssertionFailed if $actual is not empty
+     * @return  void
      */
     public static function assertEmpty($actual, $message='')
     {
@@ -310,7 +322,8 @@ trait Assert
      * @param   mixed $actual The actual, real-world value to check
      * @param   string $message An optional message that describes why the
      *          assertion is important.
-     * @throws  Exception\AssertionFailed if $actual is empty
+     * @throws  Counterpart\Exception\AssertionFailed if $actual is empty
+     * @return  void
      */
     public static function assertNotEmpty($actual, $message='')
     {
@@ -329,7 +342,8 @@ trait Assert
      * @param   mixed $actual The actual, real-world value
      * @param   string $message An optional message that describes why the
      *          assertion is important.
-     * @throws  Exception\AssertionFailed if $actual is not equal to $expected
+     * @throws  Counterpart\Exception\AssertionFailed if $actual is not equal to $expected
+     * @return  void
      */
     public static function assertEquals($expected, $actual, $message='')
     {
@@ -348,7 +362,8 @@ trait Assert
      * @param   mixed $actual The actual, real-world value
      * @param   string $message An optional message that describes why the
      *          assertion is important.
-     * @throws  Exception\AssertionFailed if $actual is equal to $expected
+     * @throws  Counterpart\Exception\AssertionFailed if $actual is equal to $expected
+     * @return  void
      */
     public static function assertNotEquals($expected, $actual, $message='')
     {
@@ -367,7 +382,8 @@ trait Assert
      * @param   mixed $actual The actual, real-world value
      * @param   string $message An optional message that describes why the
      *          assertion is important.
-     * @throws  Exception\AssertionFailed if $actual is no identical to $expected
+     * @throws  Counterpart\Exception\AssertionFailed if $actual is no identical to $expected
+     * @return  void
      */
     public static function assertIdentical($expected, $actual, $message='')
     {
@@ -384,7 +400,8 @@ trait Assert
      * @param   mixed $actual The real world value
      * @param   string $message An optional message that describes why the
      *          assertion is important.
-     * @throws  Exception\AssertionFailed if $actual is not false
+     * @throws  Counterpart\Exception\AssertionFailed if $actual is not false
+     * @return  void
      */
     public static function assertFalse($actual, $message='')
     {
@@ -401,7 +418,8 @@ trait Assert
      * @param   mixed $actual The real world value
      * @param   string $message An optional message that describes why the
      *          assertion is important.
-     * @throws  Exception\AssertionFailed if $actual is not true
+     * @throws  Counterpart\Exception\AssertionFailed if $actual is not true
+     * @return  void
      */
     public static function assertTrue($actual, $message='')
     {
@@ -420,7 +438,8 @@ trait Assert
      * @param   mixed $actual The actual, real-world value
      * @param   string $message An optional message that describes why the
      *          assertion is important.
-     * @throws  Exception\AssertionFailed if $actual is not an instance of $classname
+     * @throws  Counterpart\Exception\AssertionFailed if $actual is not an instance of $classname
+     * @return  void
      */
     public static function assertInstanceOf($classname, $actual, $message='')
     {
@@ -437,7 +456,8 @@ trait Assert
      * @param   mixed $actual The real-world value
      * @param   string $message An optional message that describes why the
      *          assertion is important.
-     * @throws  Exception\AssertionFailed if $actual is not null
+     * @throws  Counterpart\Exception\AssertionFailed if $actual is not null
+     * @return  void
      */
     public static function assertNull($actual, $message='')
     {
@@ -454,7 +474,8 @@ trait Assert
      * @param   mixed $actual The real-world value
      * @param   string $message An optional message that describes why the
      *          assertion is important.
-     * @throws  Exception\AssertionFailed if $actual is null
+     * @throws  Counterpart\Exception\AssertionFailed if $actual is null
+     * @return  void
      */
     public static function assertNotNull($actual, $message='')
     {
@@ -472,7 +493,8 @@ trait Assert
      * @param   mixed $actual The actual, real-world value
      * @param   string $message An optional message that describes why the
      *          assertion is important.
-     * @throws  Exception\AssertionFailed if $actual is not a $typename
+     * @throws  Counterpart\Exception\AssertionFailed if $actual is not a $typename
+     * @return  void
      */
     public static function assertType($typename, $actual, $message='')
     {
@@ -491,8 +513,9 @@ trait Assert
      * @param   mixed $actual The actual, real-world value
      * @param   string $message An optional message that describes why the
      *          assertion is important.
-     * @throws  Exception\AssertionFailed if $actual does not match the pattern
+     * @throws  Counterpart\Exception\AssertionFailed if $actual does not match the pattern
      *          or is not a string (or stringy object)
+     * @return  void
      */
     public static function assertMatchesRegex($pattern, $actual, $message='')
     {
@@ -510,8 +533,9 @@ trait Assert
      * @param   mixed $actual The real-world value
      * @param   string $message An optional message that describes why the
      *          assertion is important.
-     * @throws  Exception\AssertionFailed if $actual does not contain the expected
+     * @throws  Counterpart\Exception\AssertionFailed if $actual does not contain the expected
      *          substring or is not a string (or stringy object)
+     * @return  void
      */
     public static function assertStringContains($expected, $actual, $message='')
     {
@@ -529,7 +553,8 @@ trait Assert
      * @param   mixed $actual The real-world value
      * @param   string $message An optional message that describes why the
      *          assertion is important.
-     * @throws  Exception\AssertionFailed if $actual contains $expected
+     * @throws  Counterpart\Exception\AssertionFailed if $actual contains $expected
+     * @return  void
      */
     public static function assertStringDoesNotContain($expected, $actual, $message='')
     {
@@ -548,8 +573,9 @@ trait Assert
      * @param   mixed $actual The actual, real-world value
      * @param   string $message An optional message that describes why the
      *          assertion is important.
-     * @throws  Exception\AssertionFailed if $actual does not match the format or
+     * @throws  Counterpart\Exception\AssertionFailed if $actual does not match the format or
      *          $actual is not a string (or stringy object)
+     * @return  void
      */
     public static function assertMatchesPhptFormat($format, $actual, $message='')
     {
