@@ -21,6 +21,8 @@
 
 namespace Counterpart;
 
+use Counterpart\Exception\AssertionFailed;
+
 /**
  * A mess of static functions that create matchers and run them through assertions.
  *
@@ -37,27 +39,29 @@ trait Assert
      * @param   mixed $actual The actual, real-world value
      * @param   string $message An optional message that describes why the
      *          assertion is important.
-     * @throws  Exception\AssertionFailed if the matcher is not successful
+     * @throws  AssertionFailed if the matcher is not successful
      */
     public static function assertThat(Matcher $matcher, $actual, $message='')
     {
-        if (!$matcher->matches($actual)) {
-            $message = sprintf(
-                'Failed asserting that %s %s%s',
-                prettify($actual),
-                (string)$matcher,
-                $message ? "\n{$message}" : ''
-            );
-
-            if ($matcher instanceof Describer) {
-                $desc = $matcher->describeMismatch($actual);
-                if (Describer::DECLINE_DESCRIPTION !== $desc) {
-                    $message .= "\n{$desc}";
-                }
-            }
-
-            throw new Exception\AssertionFailed($message);
+        if ($matcher->matches($actual)) {
+            return;
         }
+
+        $message = sprintf(
+            'Failed asserting that %s %s%s',
+            prettify($actual),
+            (string)$matcher,
+            $message ? "\n{$message}" : ''
+        );
+
+        if ($matcher instanceof Describer) {
+            $desc = $matcher->describeMismatch($actual);
+            if (Describer::DECLINE_DESCRIPTION !== $desc) {
+                $message .= "\n{$desc}";
+            }
+        }
+
+        throw new AssertionFailed($message);
     }
 
     /**
