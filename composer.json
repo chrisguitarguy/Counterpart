@@ -1,6 +1,7 @@
 {
     "name": "counterpart/counterpart"
     , "description": "A set of generic matchers -- for seeing if one value matches another"
+    , "homepage": "http://docs.counterpartphp.org"
     , "type": "library"
     , "keywords": ["testing", "assert", "matcher"]
     , "license": "Apache-2.0"
