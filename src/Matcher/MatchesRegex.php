@@ -33,6 +33,8 @@ use Counterpart\Exception\InvalidArgumentException;
  */
 class MatchesRegex implements Matcher, Negative
 {
+    use StringyTrait;
+
     /**
      * The regex pattern to match agains.
      *
@@ -69,7 +71,7 @@ class MatchesRegex implements Matcher, Negative
      */
     public function matches($actual)
     {
-        if (!is_string($actual) && !$this->isStringyObject($actual)) {
+        if (!$this->isStringy($actual)) {
             return false;
         }
 
@@ -90,10 +92,5 @@ class MatchesRegex implements Matcher, Negative
     public function negativeMessage()
     {
         return "does not match the regular expression {$this->regexPattern}";
-    }
-
-    private function isStringyObject($value)
-    {
-        return is_object($value) && method_exists($value, '__toString');
     }
 }

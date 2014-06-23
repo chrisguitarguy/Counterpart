@@ -39,8 +39,6 @@ class MatchesRegexTest extends TestCase
             [null],
             [false],
             [true],
-            [123],
-            [12.0],
             [new \stdClass],
         ];
     }

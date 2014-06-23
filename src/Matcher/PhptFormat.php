@@ -70,6 +70,8 @@ use Counterpart\Exception\InvalidArgumentException;
  */
 class PhptFormat implements Matcher, Describer
 {
+    use StringyTrait;
+
     private $format;
     private $regex = null;
 
@@ -124,11 +126,6 @@ class PhptFormat implements Matcher, Describer
         }
 
         return \Counterpart\diff($this->format, (string)$actual);
-    }
-
-    private function isStringy($value)
-    {
-        return is_string($value) || (is_object($value) && method_exists($value, '__toString'));
     }
 
     private function getRegex()
