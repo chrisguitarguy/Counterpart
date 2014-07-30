@@ -395,6 +395,26 @@ trait Assert
     }
 
     /**
+     * Assert that a real-world value is not identical (strictly equal) to a
+     * know value.
+     *
+     * @param   mixed $expected The known value against which $actual will be checked
+     * @param   mixed $actual The actual, real-world value
+     * @param   string $message An optional message that describes why the
+     *          assertion is important.
+     * @throws  Counterpart\Exception\AssertionFailed if $actual is no identical to $expected
+     * @return  void
+     */
+    public static function assertNotIdentical($expected, $actual, $message='')
+    {
+        return self::assertThat(
+            Matchers::isNotIdentical($expected),
+            $actual,
+            $message
+        );
+    }
+
+    /**
      * Assert that a real world value is false.
      *
      * @param   mixed $actual The real world value

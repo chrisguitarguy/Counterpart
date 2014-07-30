@@ -220,7 +220,7 @@ trait Matchers
     }
 
     /**
-     * Create an return a new IsEqual with strict equality checking.
+     * Create and return a new IsEqual with strict equality checking.
      *
      * @param   mixed $expected The value against which the actual value will be
      *          checked.
@@ -229,6 +229,19 @@ trait Matchers
     public static function isIdentical($expected)
     {
         return new Matcher\IsEqual($expected, true);
+    }
+
+    /**
+     * Create and return a new IsEqual with strict quality checking wrapped up
+     * in a LogicalNot.
+     *
+     * @param   mixed $expected The value against which the real world value will
+     *          be matched.
+     * @return  Matcher\LogicalNot
+     */
+    public static function isNotIdentical($expected)
+    {
+        return self::logicalNot(self::isIdentical($expected));
     }
 
     /**

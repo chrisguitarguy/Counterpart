@@ -176,6 +176,14 @@ class MatchersTest extends IntegrationTestCase
         $this->assertFalse($iden->matches('1'));
     }
 
+    public function testIsNotIdenticalMatchesWhenToValuesAreNotExactlyEqual()
+    {
+        $ni = Matchers::isNotIdentical(1);
+        $this->assertMatcher($ni);
+        $this->assertTrue($ni->matches(2));
+        $this->assertFalse($ni->matches(1));
+    }
+
     public function testIsFalseMatchesWithValuesThatAreExactlyFalse()
     {
         $false = Matchers::isFalse();

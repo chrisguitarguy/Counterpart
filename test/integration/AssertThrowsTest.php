@@ -119,6 +119,12 @@ class AssertThrowsTest extends IntegrationTestCase
         Assert::assertIdentical(new \stdClass, new \stdClass);
     }
 
+    public function testAssertNotIdenticalThrowsWhenValuesAreIdentical()
+    {
+        $value = new \stdClass;
+        Assert::assertNotIdentical($value, $value);
+    }
+
     public static function testAssertFalseThrowsWhenValueIsNotFalse()
     {
         Assert::assertFalse(true);
