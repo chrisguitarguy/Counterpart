@@ -46,4 +46,16 @@ class LogicalOrTest extends LogicalCombinationTestCase
 
         $this->assertFalse((new LogicalAnd([$matcherOne, $matcherTwo]))->matches('ignored'));
     }
+
+    public function testToStringCombinesAllSubmatcherStrings()
+    {
+        $one = $this->matcherWithDescription('one desc');
+        $two = $this->matcherWithDescription('two desc');
+        $matcher = new LogicalOr([$one, $two]);
+
+        $description = (string)$matcher;
+
+        $this->assertContains('one desc', $description);
+        $this->assertContains('two desc', $description);
+    }
 }

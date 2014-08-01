@@ -21,6 +21,8 @@
 
 namespace Counterpart\Matcher;
 
+use Counterpart\Matcher;
+
 /**
  * Check to see if exactly one matcher matches a value
  *
@@ -33,7 +35,7 @@ class LogicalXor extends AbstractLogicalMatcher
      */
     public function matches($actual)
     {
-        $results = array_map(function ($matcher) use ($actual) {
+        $results = array_map(function (Matcher $matcher) use ($actual) {
             return $matcher->matches($actual);
         }, $this->getMatchers());
 
@@ -45,7 +47,7 @@ class LogicalXor extends AbstractLogicalMatcher
      */
     public function __toString()
     {
-        return implode(' XOR ', array_map(function ($matcher) {
+        return implode(' XOR ', array_map(function (Matcher $matcher) {
             return (string)$matcher;
         }, $this->getMatchers()));
     }

@@ -21,6 +21,8 @@
 
 namespace Counterpart\Matcher;
 
+use Counterpart\Matcher;
+
 /**
  * Check to see if a value matches one more more matchers.
  *
@@ -47,7 +49,7 @@ class LogicalOr extends AbstractLogicalMatcher
      */
     public function __toString()
     {
-        return implode(' OR ', array_map(function ($matcher) {
+        return implode(' OR ', array_map(function (Matcher $matcher) {
             return (string)$matcher;
         }, $this->getMatchers()));
     }

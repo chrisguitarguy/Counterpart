@@ -27,11 +27,26 @@ class LogicalCombinationTestCase extends TestCase
 {
     protected function matcherReturning($bool)
     {
-        $m = $this->getMock('Counterpart\\Matcher');
+        $m = $this->getMatcherMock();
         $m->expects($this->any())
             ->method('matches')
             ->willReturn($bool);
 
         return $m;
+    }
+
+    protected function matcherWithDescription($desc)
+    {
+        $m = $this->getMatcherMock();
+        $m->expects($this->atLeastOnce())
+            ->method('__toString')
+            ->willReturn($desc);
+
+        return $m;
+    }
+
+    private function getMatcherMock()
+    {
+         return $this->getMock('Counterpart\\Matcher');
     }
 }
